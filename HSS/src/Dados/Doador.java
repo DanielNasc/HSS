@@ -31,6 +31,9 @@ public class Doador extends Pessoa{
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+    public int getEtapaDoacao() {
+        return EtapaDoacao;
+    }
     public void setCadastrado(boolean cadastrado) {
         this.cadastrado = cadastrado;
         this.EtapaDoacao = 1;
