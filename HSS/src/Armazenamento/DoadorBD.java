@@ -42,6 +42,13 @@ public class DoadorBD {
             }
         }
     }
-
+    public static Boolean isDoador(String cpf) {
+        for (Doador doador : doadores) {
+            if (doador.getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
