@@ -22,7 +22,6 @@ public class Doador extends Pessoa{
         this.cadastrado = cadastrado;
         this.carteirinha = carteirinha;
         this.EtapaDoacao = EtapaDoacao;
-
     }
     public String getEndereco(){
         return endereco;
@@ -45,26 +44,8 @@ public class Doador extends Pessoa{
     public int getEtapaDoacao(){
         return EtapaDoacao;
     }
+    public void comer(){
+        System.out.println("Comendo");
 
-    public void setEndereco(String endereco){
-        this.endereco = endereco;
-    }
-    public void setTipoSanguineo(String tipoSanguineo){
-        this.tipoSanguineo = tipoSanguineo;
-    }
-    public void setFatorRH(String fatorRH){
-        this.fatorRH = fatorRH;
-    }
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public void setCadastrado(boolean cadastrado){
-        this.cadastrado = cadastrado;
-    }
-    public void setCarteirinha(String carteirinha){
-        this.carteirinha = carteirinha;
-    }
-    public void setEtapaDoacao(int EtapaDoacao){
-        this.EtapaDoacao = EtapaDoacao;
     }
 }
