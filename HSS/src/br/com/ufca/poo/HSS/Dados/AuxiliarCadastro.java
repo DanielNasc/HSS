@@ -1,6 +1,5 @@
 package br.com.ufca.poo.HSS.Dados;
-import br.com.ufca.poo.HSS.Armazenamento*;
-
+import br.com.ufca.poo.HSS.Armazenamento.PacoteDoadores;
 import java.time.LocalDate;
 import java.util.Scanner;
 
