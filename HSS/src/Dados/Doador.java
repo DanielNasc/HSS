@@ -6,6 +6,7 @@ public class Doador extends Pessoa{
     private String fatorRH;
     private String endereco;
     private boolean cadastrado;
+    private int EtapaDoacao;
 
     public Doador(String nome, String cpf, String email, LocalDate dataNascimento, String sexo, String tipoSanguineo, String fatorRH, String endereco) {
         super(nome, cpf, email, dataNascimento, sexo);
@@ -13,6 +14,7 @@ public class Doador extends Pessoa{
         this.tipoSanguineo = tipoSanguineo;
         this.fatorRH = fatorRH;
         this.endereco = endereco;
+        this.EtapaDoacao = 0;
     }
     public String getTipoSanguineo() {
         return tipoSanguineo;
@@ -31,5 +33,6 @@ public class Doador extends Pessoa{
     }
     public void setCadastrado(boolean cadastrado) {
         this.cadastrado = cadastrado;
+        this.EtapaDoacao = 1;
     }
 }
