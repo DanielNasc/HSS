@@ -14,7 +14,7 @@ public class DonatorRepository {
     }
     public static boolean checkDonator(String cpf) {
         for (BloodDonator donator : donators) {
-            if (donator.getCpf().equals(cpf) && donator.getDonationsCounter()>0) {
+            if (donator.getCpf().equals(cpf)) {
                 return true;
             }
         }
