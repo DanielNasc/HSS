@@ -36,7 +36,7 @@ public class BloodDonator {
         this.donationStep = 0;
         this.donationsCounter = 0;
     }
-    public static int geraIdade(final LocalDate aniversario) {
+    private static int geraIdade(final LocalDate aniversario) {
         final LocalDate dataAtual = LocalDate.now();
         final int Ano = dataAtual.getYear() - aniversario.getYear() - 1;
         final int Mes = aniversario.getMonthValue();
@@ -58,7 +58,7 @@ public class BloodDonator {
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-    public int getIAge() {
+    public int getAge() {
         return age;
     }
     public String getSex() {
@@ -70,7 +70,6 @@ public class BloodDonator {
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getBloodType() {
         return bloodType;
     }
