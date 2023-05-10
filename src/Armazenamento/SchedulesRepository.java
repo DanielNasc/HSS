@@ -23,14 +23,24 @@ public class SchedulesRepository {
         return null;
     }
 
-    public static ArrayList<Schedule> getByDonatorId(String donatorId) {
-        ArrayList<Schedule> schedulesByDonatorId = new ArrayList<Schedule>();
+    public static ArrayList<Schedule> getByRg(String rg) {
+        ArrayList<Schedule> schedulesByRg = new ArrayList<Schedule>();
         for (Schedule schedule : schedules) {
-            if (schedule.getDonatorId().equals(donatorId)) {
-                schedulesByDonatorId.add(schedule);
+            if (schedule.getRg().equals(rg)) {
+                schedulesByRg.add(schedule);
             }
         }
-        return schedulesByDonatorId;
+        return schedulesByRg;
+    }
+
+    public static ArrayList<Schedule> getByDay(String day) {
+        ArrayList<Schedule> schedulesByDay = new ArrayList<Schedule>();
+        for (Schedule schedule : schedules) {
+            if (schedule.getDate().toString().equals(day)) {
+                schedulesByDay.add(schedule);
+            }
+        }
+        return schedulesByDay;
     }
 
     public static void removeById(String id) {
@@ -42,12 +52,4 @@ public class SchedulesRepository {
         }
     }
 
-    public static void removeByDonatorId(String donatorId) {
-        for (Schedule s: schedules) {
-            if (s.getDonatorId().equals(donatorId)) {
-                schedules.remove(s);
-                break;
-            }
-        }
-    }
 }

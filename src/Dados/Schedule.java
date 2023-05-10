@@ -2,14 +2,18 @@ package Dados;
 
 import java.time.LocalDate;
 
+import utils.RandomUtils;
+
 public class Schedule {
     String id;
-    String donatorId;
+    String rg;
+    LocalDate dateOfBirth;
     LocalDate date;
     
-    Schedule(String id, String donatorId) {
-        this.id = id;
-        this.donatorId = donatorId;
+    Schedule(String rg, LocalDate dateOfBirth) {
+        this.id = RandomUtils.generateId(12);
+        this.rg = rg;
+        this.dateOfBirth = dateOfBirth;
 
         LocalDate now = LocalDate.now();
         // now + 1 day if today inst friday or saturday
@@ -27,8 +31,12 @@ public class Schedule {
         return this.id;
     }
 
-    public String getDonatorId() {
-        return this.donatorId;
+    public String getRg() {
+        return this.rg;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return this.dateOfBirth;
     }
 
     public LocalDate getDate() {
@@ -37,5 +45,9 @@ public class Schedule {
     
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public String toString() {
+        return "ID: " + this.id + "\nRG: " + this.rg + "\nData de nascimento: " + this.dateOfBirth + "\nData da doação: " + this.date;
     }
 }
