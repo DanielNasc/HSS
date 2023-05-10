@@ -2,10 +2,7 @@ package Dados;
 
 import java.time.LocalDate;
 
-public class BloodDonator {
-    private String name;
-    private String cpf;
-    private String email;
+public class BloodDonator extends Person {
     private LocalDate dateOfBirth;
     private int age;
     private String sex;
@@ -24,9 +21,7 @@ public class BloodDonator {
             String bloodType,
             String address
         ) {
-        this.name = name;
-        this.cpf = cpf;
-        this.email = email;
+        super(name, cpf, email);
         this.dateOfBirth = dateOfBirth;
         this.age = geraIdade(dateOfBirth);
         this.sex = sex;
@@ -46,15 +41,6 @@ public class BloodDonator {
         }
         return Ano;
     }
-    public String getName() {
-        return name;
-    }
-    public String getCpf() {
-        return cpf;
-    }
-    public String getEmail() {
-        return email;
-    }
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
@@ -64,13 +50,6 @@ public class BloodDonator {
     public String getSex() {
         return sex;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getBloodType() {
         return bloodType;
     }
