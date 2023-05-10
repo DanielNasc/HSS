@@ -1,6 +1,5 @@
 package Armazenamento;
 import java.util.ArrayList;
-import java.util.List;
 import Dados.Admin;
 
 public class AdminsRepository {
@@ -17,6 +16,15 @@ public class AdminsRepository {
     public static Admin getById(String id) {
         for (Admin admin : admins) {
             if (admin.getId().equals(id)) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
+    public static Admin getAdminByEmail(String email) {
+        for (Admin admin : admins) {
+            if (admin.getEmail().equals(email)) {
                 return admin;
             }
         }
