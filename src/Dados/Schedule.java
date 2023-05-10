@@ -10,7 +10,7 @@ public class Schedule {
     LocalDate dateOfBirth;
     LocalDate date;
     
-    Schedule(String rg, LocalDate dateOfBirth) {
+    public Schedule(String rg, LocalDate dateOfBirth) {
         this.id = RandomUtils.generateId(12);
         this.rg = rg;
         this.dateOfBirth = dateOfBirth;

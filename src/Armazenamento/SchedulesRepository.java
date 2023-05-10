@@ -6,17 +6,19 @@ import Dados.Schedule;
 public class SchedulesRepository {
     private static ArrayList<Schedule> schedules = new ArrayList<Schedule>();
 
-    public static void add(Schedule schedule) {
-        if (checkIfScheduleAlreadyExists(schedule)) {
-            return;
+    public static boolean add(Schedule schedule) {
+        if (checkIfScheduleAlreadyExists(schedule.getRg())) {
+            return false;
         }
 
         schedules.add(schedule);
+
+        return true;
     }
 
-    public static boolean checkIfScheduleAlreadyExists(Schedule schedule) {
+    public static boolean checkIfScheduleAlreadyExists(String rg) {
         for (Schedule s : schedules) {
-            if (s.equals(schedule)) {
+            if (s.getRg().equals(rg)) {
                 return true;
             }
         }
@@ -63,6 +65,17 @@ public class SchedulesRepository {
                 break;
             }
         }
+    }
+
+    public static boolean removeByRg(String rg) {
+        for (Schedule s: schedules) {
+            if (s.getRg().equals(rg)) {
+                schedules.remove(s);
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }
