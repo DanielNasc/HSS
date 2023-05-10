@@ -9,10 +9,10 @@ public class DonatorRepository {
     public DonatorRepository() {
         donators = new ArrayList<BloodDonator>();
     }
-    public static void addDonator(BloodDonator donator) {
+    public void addDonator(BloodDonator donator) {
         donators.add(donator);
     }
-    public static boolean checkDonator(String cpf) {
+    public boolean checkDonator(String cpf) {
         for (BloodDonator donator : donators) {
             if (donator.getCpf().equals(cpf)) {
                 return true;
@@ -20,10 +20,10 @@ public class DonatorRepository {
         }
         return false;
     }
-    public static List<BloodDonator> getAll() {
+    public List<BloodDonator> getAll() {
         return donators;
     }
-    public static void printDonatorsByBloodType(String bloodType) {
+    public void printDonatorsByBloodType(String bloodType) {
         for (BloodDonator donator : donators) {
             if (donator.getBloodType().equals(bloodType)) {
                 System.out.println(donator.getName() + 
@@ -33,7 +33,7 @@ public class DonatorRepository {
             }
         }
     }
-    public static BloodDonator getByCPF(String cpf) {
+    public BloodDonator getByCPF(String cpf) {
         for (BloodDonator donator : donators) {
             if (donator.getCpf().equals(cpf)) {
                 return donator;
@@ -41,7 +41,7 @@ public class DonatorRepository {
         }
         return null;
     }
-    public static void removeByCPF(String cpf) {
+    public void removeByCPF(String cpf) {
         for (BloodDonator donator: donators) {
             if (donator.getCpf().equals(cpf)) {
                 donators.remove(donator);
@@ -50,7 +50,7 @@ public class DonatorRepository {
             }
         }
     }
-    public static int numberOfDonators() {
+    public int numberOfDonators() {
         return donators.size();
     }
 }

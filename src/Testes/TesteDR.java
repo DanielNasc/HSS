@@ -38,6 +38,7 @@ public class TesteDR {
         dr.addDonator(bd);
         //check if the BloodDonator object was added to the DonatorRepository
         assertEquals(true, dr.checkDonator("12345678910"));
+        
     }
     @Test
     public void testGetAll() {
@@ -64,6 +65,7 @@ public class TesteDR {
         dr.addDonator(bd);
         dr.addDonator(bd2);
         //check if the BloodDonator object was added to the DonatorRepository
+        assertEquals(2, dr.numberOfDonators());
         dr.removeByCPF("12345678910");
         assertEquals(1, dr.numberOfDonators());
     }
