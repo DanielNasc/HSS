@@ -7,7 +7,20 @@ public class SchedulesRepository {
     private static ArrayList<Schedule> schedules = new ArrayList<Schedule>();
 
     public static void add(Schedule schedule) {
+        if (checkIfScheduleAlreadyExists(schedule)) {
+            return;
+        }
+
         schedules.add(schedule);
+    }
+
+    public static boolean checkIfScheduleAlreadyExists(Schedule schedule) {
+        for (Schedule s : schedules) {
+            if (s.equals(schedule)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static ArrayList<Schedule> getAll() {
