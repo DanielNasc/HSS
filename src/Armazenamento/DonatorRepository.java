@@ -9,7 +9,6 @@ public class DonatorRepository {
     public DonatorRepository() {
         donators = new ArrayList<BloodDonator>();
     }
-
     public static void addDonator(BloodDonator donator) {
         donators.add(donator);
     }
@@ -34,7 +33,6 @@ public class DonatorRepository {
             }
         }
     }
-
     public static BloodDonator getByCPF(String cpf) {
         for (BloodDonator donator : donators) {
             if (donator.getCpf().equals(cpf)) {
@@ -55,6 +53,4 @@ public class DonatorRepository {
     public static int numberOfDonators() {
         return donators.size();
     }
-
-
 }
