@@ -10,6 +10,10 @@ public class DonatorRepository {
         donators = new ArrayList<BloodDonator>();
     }
     public void addDonator(BloodDonator donator) {
+        if (checkDonator(donator.getCpf())) {
+            System.out.println("Doador já cadastrado");
+            return;
+        }
         donators.add(donator);
     }
     public boolean checkDonator(String cpf) {

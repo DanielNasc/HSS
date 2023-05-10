@@ -46,6 +46,9 @@ public class BloodDonator {
         }
         return Ano;
     }
+    public void addDonation() {
+        this.donationsCounter++;
+    }
     public String getName() {
         return name;
     }

@@ -25,12 +25,23 @@ public class TesteDR {
         "Luma@gmail",
         LocalDate.of(1999, 07, 05),
         "F",
-        "O+",
+        "O-",
         "Rua 3"
     );
     //create a new DonatorRepository object
     DonatorRepository dr = new DonatorRepository();
     DonatorRepository dr2 = new DonatorRepository();
+
+
+    @Test
+    public void testAddDonator() {
+        //add the BloodDonator object to the DonatorRepository
+        dr.addDonator(bd);
+        dr.addDonator(bd);
+        dr.addDonator(bd2);
+        //check if the BloodDonator object was added to the DonatorRepository
+        assertEquals(2, dr.numberOfDonators());
+    }
 
     @Test
     public void testCheckDonator() {
@@ -66,7 +77,9 @@ public class TesteDR {
         dr.addDonator(bd2);
         //check if the BloodDonator object was added to the DonatorRepository
         assertEquals(2, dr.numberOfDonators());
+        //remove the BloodDonator object from the DonatorRepository
         dr.removeByCPF("12345678910");
+        //check if the BloodDonator object was removed from the DonatorRepository
         assertEquals(1, dr.numberOfDonators());
     }
 }
