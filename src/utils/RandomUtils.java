@@ -18,8 +18,11 @@ public class RandomUtils {
         return buffer;
     }
 
-    // Triagem
-    // Realizar aferição da pressão arterial
+    // Pré-Triagem
+
+    // AFERIR PRESSÃO ARTERIAL
+    // Referência: https://www.gestaods.com.br/tabela-de-pressao-arterial/
+
     // Pressão Baixa: 85 - 119 mmHg / 55 - 79 mmHg
     // Pressão arterial Normal utilizada para o cálculo da hipertensão: 130 - 139 mmHg / 85 - 89 mmHg
     // Hipertensão Leve: 140 - 159 mmHg / 90 - 99 mmHg
@@ -37,13 +40,19 @@ public class RandomUtils {
     // Idade 40 - 49 anos: 124 mmHg / 83 mmHg       127 mmHg / 84 mmHg (min)
     // Idade 50 - 69 anos: 130 mmHg / 85 mmHg       131 mmHg / 87 mmHg (min)
 
-    public static int[] generateBloodPressure(int Status, int age, int gender) {
+    // Status: 
+        // 1 - Histórico de Pressão Baixa (Hipotensão)
+        // 2 - Histórico de Pressão Normal
+        // 3 - Histórico de Pressão Alta (Hipertensão)
+
+    public static int[] generateBloodPressure(int status, int age, int gender) {
         int systolic = 0, diastolic = 0;
     
-        switch(Status) {
+        switch(status) {
             case 1: // Baixa
                 systolic = random.nextInt(125 - 85) + 85;
                 diastolic = random.nextInt(79 - 55) + 55;
+                break;
             case 2: // Normal
             if(age >= 18 && age < 30) {
                 if(gender == 1) { // woman
@@ -127,22 +136,117 @@ public class RandomUtils {
                     }
                 }
         }
-        System.out.println("Pressão Arterial:" + systolic + "mmHg/" + diastolic + "mmHg");
+        // System.out.println("Pressão Arterial:" + systolic + "mmHg/" + diastolic + "mmHg");
         return new int[] {systolic, diastolic};
     }
+
+    // AFERIR BATIMENTOS CARDÍACOS
+
+    // Referência: https://www.tuasaude.com/frequencia-cardiaca/#como-medir
+    // Cálculo dos Pulso Normal pela Idade:
+                        // Mulheres         Homens
+    // Idade 18 - 29 anos: 74 - 78           70 - 73
+    // Idade 30 - 39 anos: 72 - 78           71 - 75
+    // Idade 40 - 49 anos: 74 - 77           72 - 76
+    // Idade 50 - 69 anos: 74 - 76           70 - 75
+
+    // Intervalo permitido: 60 - 100
+
+    // Intervalo randômico baixo: 50 - 72
+    // Intervalo randômico normal: 60 - 100
+    // Intervalo randômico alto: 78 - 110
+
+    // Status
+        // 1 - Histórico de Baixo Pulso
+        // 2 - Histórico de Pulso Normal
+        // 3 - Histórico de Alto Pulso
+
+    // Como os resultados não variam tanto entre idades, diferentemente do que acontece com a pressão arterial, que aumenta com o decorrer da idade, deixei o cálculo do pulso só com o intervalo.
+    public static int generateHeartBeats(int status) {
+        int pulse = 0;
+        
+        switch(status) {
+            case 1:
+                pulse = random.nextInt(72 - 50) + 50;
+            case 2:
+                pulse = random.nextInt(100 - 60) + 60;
+            case 3:
+                pulse = random.nextInt(110 - 78) + 78;
+        }
+
+        return pulse;
+    }
+
+    // AFERIR TEMPERATURA CORPORAL
+
+    // Referências: https://semiologiamedica.ufop.br/temperatura-corporal, https://super.abril.com.br/mundo-estranho/qual-e-o-nivel-maximo-e-o-minimo-que-a-temperatura-do-corpo-pode-atingir/
+    // Febre leve ou febrícula ou subfebril: até 37,5°C
+    // Febre moderada : 37,5 a 38,5°C
+    // Febre alta ou elevada: acima de 38,5°C
+    // Intervalo permitido: 36,5 a 37
+    // Intervalo randômico: 35,5 a 38
+
+    public static double generateBodyTemperature() {
+        return random.nextDouble(38.0 - 35.5) + 35.5;
+    }
+
     // Impedimentos
-    // Não pode está com febre
+    // Não pode está com febre (não poderá exceder 37° C)
     // Não pode está com gripe
+    // HIV
+    // Parkinson
+    // Transplante de órgãos ou de medula
+    // Se já teve hepatite após os 11 anos de idade
+    // Se já teve malária
+    // Se tem doença de chagas
+    // Se teve algum tipo de cancêr
+    // Se tem graves problemas no pulmão, coração, rins ou fígado.
+    // Se teve doenças como: tuberculose extra-pulmonar, elefantíase, hanseníase, calazar, leishmaniose tegumentar ou cutânea, brucelose, ou esquistossomose hepatoesplênica
+    // Anemia
+    // Gravidez
+    // Amamentando
     // Batimentos/pulso entre 60 e 100
     // Pressão Mínima: < 90mmHg / < 60 mmHg
     // Sem histórico de hipertensão: 140 mmHg / 90 mmHg
     // Com histórico de hipertensão: >= 180 mmHg / 100mmHg
     // Peso abaixo de 50 kg
+    // Quem tem 61 anos ou mais e nunca doou está inapto. 
     // Idade fora do intervalo entre 18 - 69 anos
     // Fora do intervalo de tempo permitido
+    // Tem problema de coagulação de sangue
+    // Diabético com complicações vasculares ou em uso de insulina
 
     // Perguntas
+    // Referência: https://www.prosangue.sp.gov.br/artigos/quem_nao_pode_doar.html
     // Histórico de Ansiedade?
     // Histórico de Pressão Arterial Baixa ou Hipertensa?
+    // Você descansou bem?
+    // Fez algum esforço físico recentemente?
+    // Está grávida?
+    // Está amamentando?
+    // Recebeu alguma vacina nas últimas 48 horas?
+    // Teve diarreia, sintomas de gripe ou resfriado, conjuntivite, extração dentária ou tratamento de canal nos últimos 7 dias?
+    // Teve Rubéola, Erisipela ou uso de antibióticos nas últimas 2 semanas?
+    // Teve Dengue, Febre Amarela, passou por cirurgia com anestesia geral ou recebeu soro antitetânico nas últimas 4 semanas?
+    // Fez Tatuagem, maquiagem definitiva ou micropigmentação no último ano?
+    // Tem piercing?
+    // Recebeu transfução de sangue no último ano?
+    // É virgem?
+    // É casada?
+    // Já teve malária?
+    // Teve contato sexual com alguma pessoa com AIDS ou com teste positivo para HIV?
+    // Teve contato sexual em troca de dinheiro ou de drogas ou seus respectivos parceiros sexuais?
+    // Teve contato sexual com usuário de droga endovenosa?
+    // Teve contato sexual com pessoa que tenha recebido transfusão de sangue nos últimos 12 meses?
+    // Sofreu algum acidente grave no último ano?
+    // Teve sífilis ou gonorréia no último ano?
+    // Teve câncer?
+    // Tem graves problemas no pulmão, coração, rins ou fígado?
+    // Tem problema de coagulação de sangue?
+    // Tem diabetes? Se sim, faz uso de insulina ou tem complicações vasculares?
+    // Já teve tuberculose extra-pulmonar, elefantíase, hanseníase, calazar, leishmaniose tegumentar ou cutânea, brucelose, ou esquistossomose hepatoesplênica?
+    // Foi submetido a transplante de órgãos ou de medula?
+    // Tem mal de Parkinson?
+
     
 }
