@@ -277,7 +277,7 @@ public class RandomUtils {
                 else { //man
                     height = random.nextDouble(1.79 - 1.66) + 1.66;
                 }
-            break; 
+                break; 
             case 3:
                 if(gender == 1) { //woman
                     height = random.nextDouble(1.79 - 1.70) + 1.70;
@@ -285,15 +285,52 @@ public class RandomUtils {
                 else { //man
                     height = random.nextDouble(1.90- 1.80) + 1.80;
                 }
-            break; 
+                break; 
         }
         return height;
+    }
+    // status
+        // 1 - Peso para baixa estatura
+        // 2 - Peso para estatura mediana
+        // 3 - Peso para alta estatura
+
+    public static double generateWeight(int status, int gender) {
+        double weight = 0.0;
+        
+        switch(status){
+            case 1:
+                if(gender == 1) { //woman
+                    weight = random.nextDouble(55.0 - 50.0) + 50.0;
+                }
+                else { //man
+                    weight = random.nextDouble(62.0 - 50.0) + 50.0;
+                }
+                break; 
+            case 2:
+                if(gender == 1) { //woman
+                    weight = random.nextDouble(70.0 - 52.5) + 52.5;
+                }
+                else { //man
+                    weight = random.nextDouble(75.0 - 53.8) + 53.8;
+                }
+                break; 
+            case 3:
+                if(gender == 1) { //woman
+                    weight = random.nextDouble(75.0 - 56.5) + 56.5;
+                }
+                else { //man
+                    weight = random.nextDouble(80.0 - 63.8) + 63.8;
+                }
+                break; 
+        }
+        return weight;
     }
 
 
     // Impedimentos
     // Não pode está com febre (não poderá exceder 37° C)
     // Não pode está com gripe
+    // Obesidade
     // HIV
     // Parkinson
     // Transplante de órgãos ou de medula
