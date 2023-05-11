@@ -190,6 +190,29 @@ public class RandomUtils {
         return random.nextDouble(38.0 - 35.5) + 35.5;
     }
 
+    // AFERIR DOSAGEM DE HEMOGLOBINA
+    
+    //  Referências: https://www.saude.ce.gov.br/2019/07/04/habitos-saudaveis-aumentam-chances-de-ser-um-potencial-doador-de-sangue/, https://www.tuasaude.com/hemoglobina/
+    // Para realizar a doação é necessário que os homens apresentem hemoglobina maior ou igual de 13g/dl e as mulheres um valor de 12,5g/dl. 
+
+    // Intervalo normal:
+        // Homens: 13,0 a 18,0 g/dl
+        // Mulheres: 12,5 a 16,0g/dl
+
+    // Intervalo randômico:
+        // Homens: 12,5 a 19,0 g/dl
+        // Mulheres: 11,5 a 18,0 g/dl
+    public static double generateHemoglobin(int gender) {
+        double hemoglobin = 0.0;
+        if(gender == 1) { //woman
+            hemoglobin = random.nextDouble(18.0 - 11.5) + 11.5;
+        }
+        else { //man
+            hemoglobin = random.nextDouble(19.0 - 12.5) + 12.5;
+        }
+        return hemoglobin;
+    }
+
     // Impedimentos
     // Não pode está com febre (não poderá exceder 37° C)
     // Não pode está com gripe
@@ -197,12 +220,13 @@ public class RandomUtils {
     // Parkinson
     // Transplante de órgãos ou de medula
     // Se já teve hepatite após os 11 anos de idade
+    // Teve sintomas de desidratação recentemente? (Afeta hemoglobina)
     // Se já teve malária
     // Se tem doença de chagas
     // Se teve algum tipo de cancêr
     // Se tem graves problemas no pulmão, coração, rins ou fígado.
     // Se teve doenças como: tuberculose extra-pulmonar, elefantíase, hanseníase, calazar, leishmaniose tegumentar ou cutânea, brucelose, ou esquistossomose hepatoesplênica
-    // Anemia
+    // Anemia (Afeta hemoglobina)
     // Gravidez
     // Amamentando
     // Batimentos/pulso entre 60 e 100
