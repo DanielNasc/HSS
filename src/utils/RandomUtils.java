@@ -192,7 +192,7 @@ public class RandomUtils {
     // Intervalo randômico: 35,5 a 38
 
     public static double generateBodyTemperature() {
-        return random.nextDouble(38.0 - 35.5) + 35.5;
+        return random.nextDouble() * (38.0 - 35.5) + 35.5;
     }
 
     // AFERIR DOSAGEM DE HEMOGLOBINA
@@ -210,10 +210,10 @@ public class RandomUtils {
     public static double generateHemoglobin(int gender) {
         double hemoglobin = 0.0;
         if(gender == 1) { //woman
-            hemoglobin = random.nextDouble(18.0 - 11.5) + 11.5;
+            hemoglobin = random.nextDouble() * (18.0 - 11.5) + 11.5;
         }
         else { //man
-            hemoglobin = random.nextDouble(19.0 - 12.5) + 12.5;
+            hemoglobin = random.nextDouble() * (19.0 - 12.5) + 12.5;
         }
         return hemoglobin;
     }
@@ -264,26 +264,26 @@ public class RandomUtils {
         switch(status){
             case 1:
                 if(gender == 1) { //woman
-                    height = random.nextDouble(1.59 - 1.47) + 1.47;
+                    height = random.nextDouble() * (1.59 - 1.47) + 1.47;
                 }
                 else { //man
-                    height = random.nextDouble(1.65 - 1.58) + 1.58;
+                    height = random.nextDouble() * (1.65 - 1.58) + 1.58;
                 }
                break; 
             case 2:
                 if(gender == 1) { //woman
-                    height = random.nextDouble(1.69 - 1.60) + 1.60;
+                    height = random.nextDouble() * (1.69 - 1.60) + 1.60;
                 }
                 else { //man
-                    height = random.nextDouble(1.79 - 1.66) + 1.66;
+                    height = random.nextDouble() * (1.79 - 1.66) + 1.66;
                 }
                 break; 
             case 3:
                 if(gender == 1) { //woman
-                    height = random.nextDouble(1.79 - 1.70) + 1.70;
+                    height = random.nextDouble() * (1.79 - 1.70) + 1.70;
                 }
                 else { //man
-                    height = random.nextDouble(1.90- 1.80) + 1.80;
+                    height = random.nextDouble() *(1.90- 1.80) + 1.80;
                 }
                 break; 
         }
@@ -300,26 +300,26 @@ public class RandomUtils {
         switch(status){
             case 1:
                 if(gender == 1) { //woman
-                    weight = random.nextDouble(55.0 - 50.0) + 50.0;
+                    weight = random.nextDouble() * (55.0 - 50.0) + 50.0;
                 }
                 else { //man
-                    weight = random.nextDouble(62.0 - 50.0) + 50.0;
+                    weight = random.nextDouble() * (62.0 - 50.0) + 50.0;
                 }
                 break; 
             case 2:
                 if(gender == 1) { //woman
-                    weight = random.nextDouble(70.0 - 52.5) + 52.5;
+                    weight = random.nextDouble() * (70.0 - 52.5) + 52.5;
                 }
                 else { //man
-                    weight = random.nextDouble(75.0 - 53.8) + 53.8;
+                    weight = random.nextDouble() * (75.0 - 53.8) + 53.8;
                 }
                 break; 
             case 3:
                 if(gender == 1) { //woman
-                    weight = random.nextDouble(75.0 - 56.5) + 56.5;
+                    weight = random.nextDouble() * (75.0 - 56.5) + 56.5;
                 }
                 else { //man
-                    weight = random.nextDouble(80.0 - 63.8) + 63.8;
+                    weight = random.nextDouble() * (80.0 - 63.8) + 63.8;
                 }
                 break; 
         }
