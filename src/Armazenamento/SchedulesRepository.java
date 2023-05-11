@@ -48,16 +48,6 @@ public class SchedulesRepository {
         return schedulesByRg;
     }
 
-    public static ArrayList<Schedule> getByDay(String day) {
-        ArrayList<Schedule> schedulesByDay = new ArrayList<Schedule>();
-        for (Schedule schedule : schedules) {
-            if (schedule.getDate().toString().equals(day)) {
-                schedulesByDay.add(schedule);
-            }
-        }
-        return schedulesByDay;
-    }
-
     public static void removeById(String id) {
         for (Schedule s: schedules) {
             if (s.getId().equals(id)) {

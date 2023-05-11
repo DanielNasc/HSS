@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class BloodDonator extends Person {
     private LocalDate dateOfBirth;
     private int age;
-    private String sex;
+    private String gender;
     private String bloodType;
     private String address;
     private boolean registred;
@@ -17,14 +17,14 @@ public class BloodDonator extends Person {
             String cpf,
             String email,
             LocalDate dateOfBirth,
-            String sex,
+            String gender,
             String bloodType,
             String address
         ) {
         super(name, cpf, email);
         this.dateOfBirth = dateOfBirth;
         this.age = geraIdade(dateOfBirth);
-        this.sex = sex;
+        this.gender = gender;
         this.registred = false;
         this.bloodType = bloodType;
         this.address = address;
@@ -51,7 +51,7 @@ public class BloodDonator extends Person {
         return age;
     }
     public String getSex() {
-        return sex;
+        return gender;
     }
     public String getBloodType() {
         return bloodType;
