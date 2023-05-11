@@ -54,46 +54,47 @@ public class RandomUtils {
                 diastolic = random.nextInt(79 - 55) + 55;
                 break;
             case 2: // Normal
-            if(age >= 18 && age < 30) {
-                if(gender == 1) { // woman
-                    systolic = (random.nextInt(139 - 120) + 120);
-                    diastolic = (random.nextInt(89 - 80) + 80);
+                if(age >= 18 && age < 30) {
+                    if(gender == 1) { // woman
+                        systolic = (random.nextInt(139 - 120) + 120);
+                        diastolic = (random.nextInt(89 - 80) + 80);
+                    }
+                    else{ // man
+                        systolic = (random.nextInt(139 - 121) + 121);
+                        diastolic = (random.nextInt(89 - 80) + 80);
+                    }
                 }
-                else{ // man
-                    systolic = (random.nextInt(139 - 121) + 121);
-                    diastolic = (random.nextInt(89 - 80) + 80);
+                if(age >= 30 && age < 39) {
+                    if(gender == 1) { // woman
+                        systolic = (random.nextInt(139 - 122) + 122);
+                        diastolic = (random.nextInt(89 - 81) + 81);
+                    }
+                    else{ // man
+                        systolic = (random.nextInt(139 - 123) + 123);
+                        diastolic = (random.nextInt(89 - 82) + 82);
+                    }
                 }
-            }
-            if(age >= 30 && age < 39) {
-                if(gender == 1) { // woman
-                    systolic = (random.nextInt(139 - 122) + 122);
-                    diastolic = (random.nextInt(89 - 81) + 81);
+                if(age >= 40 && age < 49) {
+                    if(gender == 1) { // woman
+                        systolic = (random.nextInt(139 - 124) + 124);
+                        diastolic = (random.nextInt(89 - 83) + 83);
+                    }
+                    else{ // man
+                        systolic = (random.nextInt(139 - 127) + 127);
+                        diastolic = (random.nextInt(89 - 84) + 84);
+                    }
                 }
-                else{ // man
-                    systolic = (random.nextInt(139 - 123) + 123);
-                    diastolic = (random.nextInt(89 - 82) + 82);
+                if(age >= 50 && age <= 69) {
+                    if(gender == 1) { // woman
+                        systolic = (random.nextInt(139 - 130) + 130);
+                        diastolic = (random.nextInt(89 - 85) + 85);
+                    }
+                    else{ // man
+                        systolic = (random.nextInt(139 - 130) + 131);
+                        diastolic = (random.nextInt(89 - 87) + 87);
+                    }
                 }
-            }
-            if(age >= 40 && age < 49) {
-                if(gender == 1) { // woman
-                    systolic = (random.nextInt(139 - 124) + 124);
-                    diastolic = (random.nextInt(89 - 83) + 83);
-                }
-                else{ // man
-                    systolic = (random.nextInt(139 - 127) + 127);
-                    diastolic = (random.nextInt(89 - 84) + 84);
-                }
-            }
-            if(age >= 50 && age <= 69) {
-                if(gender == 1) { // woman
-                    systolic = (random.nextInt(139 - 130) + 130);
-                    diastolic = (random.nextInt(89 - 85) + 85);
-                }
-                else{ // man
-                    systolic = (random.nextInt(139 - 130) + 131);
-                    diastolic = (random.nextInt(89 - 87) + 87);
-                }
-            }
+                break;
             case 3: // Alta
                 if(age >= 18 && age < 30) {
                     if(gender == 1) { // woman
@@ -135,6 +136,7 @@ public class RandomUtils {
                         diastolic = (random.nextInt(89 - 87) + 87) + (random.nextInt(25 - 5) + 5);
                     }
                 }
+                break;
         }
         // System.out.println("Pressão Arterial:" + systolic + "mmHg/" + diastolic + "mmHg");
         return new int[] {systolic, diastolic};
@@ -168,10 +170,13 @@ public class RandomUtils {
         switch(status) {
             case 1:
                 pulse = random.nextInt(72 - 50) + 50;
+                break;
             case 2:
                 pulse = random.nextInt(100 - 60) + 60;
+                break;
             case 3:
                 pulse = random.nextInt(110 - 78) + 78;
+                break;
         }
 
         return pulse;
@@ -213,6 +218,79 @@ public class RandomUtils {
         return hemoglobin;
     }
 
+    // AFERIR ALTURA,PESO E IMC
+
+    // Referências: https://www.unimed.coop.br/viver-bem/pais-e-filhos/estatura-por-idade, https://g1.globo.com/brasil/noticia/2010/08/metade-dos-adultos-brasileiros-esta-acima-do-peso-segundo-ibge.html
+    // Intervalo permitido: pesar mais de 50 quilos e ter IMC maior ou igual a 18,5 
+
+    // Cálculo do IMC por meio do Índice de Kettle
+    // Para calcular, você deve elevar o valor da estatura ao quadrado. Depois, divida o peso pelo resultado da multiplicação.
+
+    // IMC = peso (kg)/(altura²)(m)
+
+    // Valores de IMC
+    // Abaixo de 18,5 -> Déficit de massa corporal 
+    // Entre 18,5 e 24,9 -> Massa corporal normal
+    // Entre 25 e 29,9 -> Sobrepeso
+
+    // Intervalo randômico de altura:
+        // Homens: 
+            // Baixa estatura: 1,58 - 1,65
+            // Estatura Mediana: 1,66 - 1,79
+            // Alta estatura: 1,80 - 1,90
+        // Mulheres: 
+            // Baixa estatura: 1,47- 1,59
+            // Estatura Mediana: 1,60 - 1,69
+            // Alta estatura: 1,70 - 1,79
+
+    // Intervalo randômico de peso:
+        // Homens: 
+            // Para Baixa Estatura: 50,0 - 62,0
+            // Para Estatura Mediana: 53,8 - 75,0
+            // Para Alta estatura: 63,8 - 80,0
+        // Mulheres: 
+            // Para Baixa Estatura: 50,0 - 55,0
+            // Para Estatura Mediana: 52,5 - 70,0
+            // Para Alta estatura: 56,5 - 75,0
+
+    // status
+        // 1 - Baixa estatura
+        // 2 - Estatura mediana
+        // 3 - Alta estatura
+        
+    public static double generateHeight(int status, int gender) {
+        double height = 0.0;
+        
+        switch(status){
+            case 1:
+                if(gender == 1) { //woman
+                    height = random.nextDouble(1.59 - 1.47) + 1.47;
+                }
+                else { //man
+                    height = random.nextDouble(1.65 - 1.58) + 1.58;
+                }
+               break; 
+            case 2:
+                if(gender == 1) { //woman
+                    height = random.nextDouble(1.69 - 1.60) + 1.60;
+                }
+                else { //man
+                    height = random.nextDouble(1.79 - 1.66) + 1.66;
+                }
+            break; 
+            case 3:
+                if(gender == 1) { //woman
+                    height = random.nextDouble(1.79 - 1.70) + 1.70;
+                }
+                else { //man
+                    height = random.nextDouble(1.90- 1.80) + 1.80;
+                }
+            break; 
+        }
+        return height;
+    }
+
+
     // Impedimentos
     // Não pode está com febre (não poderá exceder 37° C)
     // Não pode está com gripe
@@ -232,7 +310,7 @@ public class RandomUtils {
     // Batimentos/pulso entre 60 e 100
     // Pressão Mínima: < 90mmHg / < 60 mmHg
     // Sem histórico de hipertensão: 140 mmHg / 90 mmHg
-    // Com histórico de hipertensão: >= 180 mmHg / 100mmHg
+    // Com histórico de hiperte+nsão: >= 180 mmHg / 100mmHg
     // Peso abaixo de 50 kg
     // Quem tem 61 anos ou mais e nunca doou está inapto. 
     // Idade fora do intervalo entre 18 - 69 anos
