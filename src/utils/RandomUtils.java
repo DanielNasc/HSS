@@ -45,9 +45,14 @@ public class RandomUtils {
         // 2 - Histórico de Pressão Normal
         // 3 - Histórico de Pressão Alta (Hipertensão)
 
-    public static int[] generateBloodPressure(int status, int age, int gender) {
-        int systolic = 0, diastolic = 0;
-    
+    public static int[] generateBloodPressure(boolean bloodPressureInfluence, int age, int gender) {
+        int systolic = 0, diastolic = 0, status = 0;
+
+        if(bloodPressureInfluence)
+            status = 3;
+        else
+            status = (random.nextInt(2) + 1);
+
         switch(status) {
             case 1: // Baixa
                 systolic = random.nextInt(125 - 85) + 85;
@@ -164,8 +169,13 @@ public class RandomUtils {
         // 3 - Histórico de Alto Pulso
 
     // Como os resultados não variam tanto entre idades, diferentemente do que acontece com a pressão arterial, que aumenta com o decorrer da idade, deixei o cálculo do pulso só com o intervalo.
-    public static int generateHeartBeats(int status) {
-        int pulse = 0;
+    public static int generateHeartBeats(boolean heartBeatsInfluence) {
+        int pulse = 0, status = 0;
+        
+        if(heartBeatsInfluence)
+            status = 3;
+        else
+            status = (random.nextInt(2) + 1);
         
         switch(status) {
             case 1:
@@ -207,13 +217,23 @@ public class RandomUtils {
     // Intervalo randômico:
         // Homens: 12,5 a 19,0 g/dl
         // Mulheres: 11,5 a 18,0 g/dl
-    public static double generateHemoglobin(int gender) {
+    public static double generateHemoglobin(boolean hemoglobinInfluence, int gender) {
         double hemoglobin = 0.0;
-        if(gender == 1) { //woman
-            hemoglobin = random.nextDouble() * (18.0 - 11.5) + 11.5;
+        if(hemoglobinInfluence) {
+            if(gender == 1) { //woman
+                hemoglobin = random.nextDouble() * (14.5 - 11.5) + 11.5;
+            }
+            else { //man
+                hemoglobin = random.nextDouble() * (15.0 - 12.0) + 12.5;
+            }
         }
-        else { //man
-            hemoglobin = random.nextDouble() * (19.0 - 12.5) + 12.5;
+        else {
+            if(gender == 1) { //woman
+                hemoglobin = random.nextDouble() * (18.0 - 12.0) + 11.5;
+            }
+            else { //man
+                hemoglobin = random.nextDouble() * (19.0 - 12.5) + 12.5;
+            }
         }
         return hemoglobin;
     }
@@ -258,8 +278,9 @@ public class RandomUtils {
         // 2 - Estatura mediana
         // 3 - Alta estatura
         
-    public static double generateHeight(int status, int gender) {
+    public static double generateHeight(int gender) {
         double height = 0.0;
+        int status = (random.nextInt(2) + 1);
         
         switch(status){
             case 1:
@@ -294,8 +315,9 @@ public class RandomUtils {
         // 2 - Peso para estatura mediana
         // 3 - Peso para alta estatura
 
-    public static double generateWeight(int status, int gender) {
+    public static double generateWeight(int gender) {
         double weight = 0.0;
+        int status = (random.nextInt(2) + 1); 
         
         switch(status){
             case 1:
@@ -333,6 +355,7 @@ public class RandomUtils {
     // Obesidade
     // HIV
     // Parkinson
+    // não pode doar a pessoa que apresentar hematócrito menor que 39% ( ou hemoglobina <13g/dL) no homem e 38% (ou hemoglobina <12,5g/dL) na mulher. 
     // Transplante de órgãos ou de medula
     // Se já teve hepatite após os 11 anos de idade
     // Teve sintomas de desidratação recentemente? (Afeta hemoglobina)
