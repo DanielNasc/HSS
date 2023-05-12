@@ -51,4 +51,18 @@ public class SchedulesRepository {
             }
         }
     }
+    public static boolean removeByRg(String rg) {
+        for (Schedule s: schedules) {
+            if (s.getRg().equals(rg)) {
+                schedules.remove(s);
+                return true;
+            }
+        }
+
+        return false;
+    }
+    //Remove all
+    public static void clearRepository() {
+        schedules.clear();
+    }
 }
