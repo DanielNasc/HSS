@@ -1,18 +1,17 @@
-package utils.ClinicalScreening;
-import utils.RandomUtils;
+package utils;
 
 public class ClinicalScreening {
-    boolean clinicalScreeningFailed;
-    boolean bloodPressureInfluence;
-    boolean heartBeatsInfluence;
-    boolean hemoglobinInfluence;
-    int[] bloodPressure;
-    int heartBeats;
-    double bodyTemperature;
-    double hemoglobin;
-    double height;
-    double weight;
-    double imc;
+    private boolean clinicalScreeningFailed;
+    private boolean bloodPressureInfluence;
+    private boolean heartBeatsInfluence;
+    private boolean hemoglobinInfluence;
+    private int[] bloodPressure;
+    private int heartBeats;
+    private double bodyTemperature;
+    private double hemoglobin;
+    private double height;
+    private double weight;
+    private double imc;
 
     
     public ClinicalScreening() {
