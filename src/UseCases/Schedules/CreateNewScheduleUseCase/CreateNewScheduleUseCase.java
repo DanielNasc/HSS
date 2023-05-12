@@ -2,11 +2,11 @@ package UseCases.Schedules.CreateNewScheduleUseCase;
 
 import java.time.LocalDate;
 
-import Dados.Schedule;
-import Armazenamento.SchedulesRepository;
+import Model.Entities.Schedule;
+import Model.Repositories.SchedulesRepository;
 
 public class CreateNewScheduleUseCase {
-    public static void execute(String rg, LocalDate dateOfBirth) {
+    public void execute(String rg, LocalDate dateOfBirth) {
         Schedule schedule = new Schedule(rg, dateOfBirth);
 
         if (SchedulesRepository.add(schedule)) {

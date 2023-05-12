@@ -1,6 +1,6 @@
 package UseCases.Schedules.DeleteScheduleUseCase;
 
-import Armazenamento.SchedulesRepository;
+import Model.Repositories.SchedulesRepository;
 
 public class DeleteScheduleUseCase {
     public void execute(String rg) {

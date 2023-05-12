@@ -1,10 +1,12 @@
-package Testes;
+package Tests;
 
-import Dados.Admin;
 import org.junit.Test;
+
+import Model.Entities.Admin;
+
 import static org.junit.Assert.assertEquals;
 
-public class TesteAdmin {
+public class TestAdmin {
     Admin adminTester = new Admin("Daniel", "15948726301", "admin@admin", "6zG4FgEz");
 
     @Test

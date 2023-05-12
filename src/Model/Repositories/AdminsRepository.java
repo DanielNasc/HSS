@@ -1,6 +1,7 @@
-package Armazenamento;
+package Model.Repositories;
 import java.util.ArrayList;
-import Dados.Admin;
+
+import Model.Entities.Admin;
 
 public class AdminsRepository {
     private static ArrayList<Admin> admins = new ArrayList<Admin>();

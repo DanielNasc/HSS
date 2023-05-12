@@ -1,8 +1,8 @@
-package Armazenamento;
+package Model.Repositories;
 
 import java.util.ArrayList;
 
-import Dados.DonationRegistry;
+import Model.Entities.DonationRegistry;
 
 public class DonationHistoryRepository {
     private ArrayList<DonationRegistry> donationsHistory = new ArrayList<DonationRegistry>();

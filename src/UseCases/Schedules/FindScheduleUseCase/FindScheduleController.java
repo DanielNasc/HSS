@@ -1,10 +1,9 @@
 package UseCases.Schedules.FindScheduleUseCase;
 
-import Dados.Schedule;
-
 import java.time.LocalDate;
 
-import Armazenamento.SchedulesRepository;
+import Model.Entities.Schedule;
+import Model.Repositories.SchedulesRepository;
 
 public class FindScheduleController {
     public Schedule findShedule(String rg, LocalDate dateOfBirth) {

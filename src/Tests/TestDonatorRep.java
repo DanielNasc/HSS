@@ -1,13 +1,14 @@
-package Testes;
-import Dados.BloodDonator;
-import Armazenamento.DonatorRepository;
+package Tests;
+import Model.Entities.BloodDonator;
+import Model.Repositories.DonatorRepository;
+
 import java.time.LocalDate;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 
 
-public class TesteDonatorRep {
+public class TestDonatorRep {
     //create a new BloodDonator object
     BloodDonator luannBloodDonator = new BloodDonator(
         "Luann",

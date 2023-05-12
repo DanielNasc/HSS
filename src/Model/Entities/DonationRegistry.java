@@ -1,8 +1,8 @@
-package Dados;
+package Model.Entities;
 
 import java.time.LocalDate;
 
-import utils.RandomUtils;
+import Utils.RandomUtils;
 
 public class DonationRegistry {
     private String id;

@@ -1,10 +1,17 @@
-package Armazenamento;
+package Model.Repositories;
 
 import java.util.ArrayList;
-import Dados.Schedule;
+
+import Model.Entities.Schedule;
 
 public class SchedulesRepository {
     private static ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+
+    public static final SchedulesRepository INSTANCE = new SchedulesRepository();
+
+    public static SchedulesRepository getInstance() {
+        return INSTANCE;
+    }
 
     public static boolean add(Schedule schedule) {
         if (checkIfScheduleAlreadyExists(schedule.getRg())) {

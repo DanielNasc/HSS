@@ -1,7 +1,7 @@
 package UseCases.Admins.LoginUseCase;
 
-import Dados.Admin;
-import Armazenamento.AdminsRepository;
+import Model.Entities.Admin;
+import Model.Repositories.AdminsRepository;
 
 // Login as Admin
 

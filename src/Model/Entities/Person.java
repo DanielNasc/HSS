@@ -1,6 +1,6 @@
-package Dados;
+package Model.Entities;
 
-import utils.RandomUtils;
+import Utils.RandomUtils;
 
 public abstract class Person {
     private String id;

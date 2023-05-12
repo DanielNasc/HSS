@@ -1,11 +1,12 @@
-package Testes;
+package Tests;
 
-import Dados.Schedule;
 import java.time.LocalDate;
 
 import org.junit.Test;
 
-public class TesteSchedules{
+import Model.Entities.Schedule;
+
+public class TestSchedules{
     public
     //create a new Schedule object
     Schedule firstSchedule  = new Schedule("12345678910", LocalDate.of(1999, 7, 5));

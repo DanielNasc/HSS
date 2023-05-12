@@ -1,11 +1,12 @@
-package Testes;
-import Dados.Admin;
-import Armazenamento.AdminsRepository;
+package Tests;
+import Model.Entities.Admin;
+import Model.Repositories.AdminsRepository;
+
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 
-public class TesteAdminsRep{
+public class TestAdminsRep{
     AdminsRepository adminsRep = new AdminsRepository();
     Admin adminTester = new Admin("Daniel", "15948726301", "Daniel@gmial", "6zG4FgEz");
     Admin adminTester2 = new Admin("Dariel", "1346192857", "Dariel@gmail", "S4Fa5pLs");

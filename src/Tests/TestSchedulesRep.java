@@ -1,7 +1,7 @@
-package Testes;
+package Tests;
 
-import Armazenamento.SchedulesRepository;
-import Dados.Schedule;
+import Model.Entities.Schedule;
+import Model.Repositories.SchedulesRepository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,19 +9,19 @@ import java.time.LocalDate;
 import org.junit.Test;
 
 
-public class TesteSchedulesRep{
+public class TestSchedulesRep{
     //create a new SchedulesRepository object
-    SchedulesRepository repository = new SchedulesRepository();
+    private static SchedulesRepository repository = new SchedulesRepository();
     //create a new Schedule object
-    Schedule firstSchedule = new Schedule(
+    private static Schedule firstSchedule = new Schedule(
         "12345678910", LocalDate.of(1983, 8, 7));
-    Schedule secondSchedule = new Schedule(
+    private static Schedule secondSchedule = new Schedule(
         "98765432110", LocalDate.of(1999, 5, 5));
 
     
     //add
     @Test
-    public void testAdd() {
+    public static void testAdd() {
         repository.add(firstSchedule);
         repository.add(secondSchedule);
         assert(repository.getAll().contains(firstSchedule));
@@ -30,7 +30,7 @@ public class TesteSchedulesRep{
     }
     //getById
     @Test
-    public void testGetById() {
+    public static void testGetById() {
         repository.add(firstSchedule);
         repository.add(secondSchedule);
         assertEquals(firstSchedule, repository.getById(firstSchedule.getId()));
@@ -38,7 +38,7 @@ public class TesteSchedulesRep{
     }
     //getByRg
     @Test
-    public void testGetByRg() {
+    public static void testGetByRg() {
         repository.add(firstSchedule);
         repository.add(secondSchedule);
         repository.clearRepository();
@@ -46,7 +46,7 @@ public class TesteSchedulesRep{
 
     //removeById
     @Test
-    public void testRemoveById() {
+    public static void testRemoveById() {
         repository.add(firstSchedule);
         repository.add(secondSchedule);
         repository.removeById(firstSchedule.getId());
@@ -56,7 +56,7 @@ public class TesteSchedulesRep{
     }
     //removeByRg
     @Test
-    public void testRemoveByRg() {
+    public static void testRemoveByRg() {
         repository.add(firstSchedule);
         repository.add(secondSchedule);
         assertEquals(true, repository.removeByRg(firstSchedule.getRg()));

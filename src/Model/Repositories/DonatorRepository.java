@@ -1,7 +1,8 @@
-package Armazenamento;
+package Model.Repositories;
 import java.util.ArrayList;
 import java.util.List;
-import Dados.BloodDonator;
+
+import Model.Entities.BloodDonator;
 
 public class DonatorRepository {
     private static List<BloodDonator> donators;

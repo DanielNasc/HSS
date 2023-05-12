@@ -1,4 +1,4 @@
-package utils;
+package Utils;
 
 public class ClinicalScreening {
     private boolean clinicalScreeningFailed;

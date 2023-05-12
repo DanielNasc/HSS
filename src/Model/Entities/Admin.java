@@ -1,4 +1,4 @@
-package Dados;
+package Model.Entities;
 // import java.time.LocalDate;
 
 public class Admin extends Person {
