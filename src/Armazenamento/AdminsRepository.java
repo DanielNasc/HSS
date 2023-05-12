@@ -39,4 +39,8 @@ public class AdminsRepository {
             }
         }
     }
+    //Remove all
+    public static void removeAll() {
+        admins.clear();
+    }
 }
