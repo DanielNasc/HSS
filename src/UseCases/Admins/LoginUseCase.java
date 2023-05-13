@@ -1,4 +1,4 @@
-package UseCases.Admins.Login;
+package UseCases.Admins;
 
 import Model.Entities.Admin;
 import Model.Repositories.AdminsRepository;

@@ -1,4 +1,4 @@
-package UseCases.Schedules.ChangeScheduleStatus;
+package UseCases.Schedules;
 
 import Model.Entities.Schedule;
 import Model.Repositories.SchedulesRepository;

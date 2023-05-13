@@ -1,4 +1,4 @@
-package UseCases.DonationsHistory.CreateDonationRegistry;
+package UseCases.DonationsHistory;
 
 import Model.Entities.DonationRegistry;
 import Model.Repositories.DonationHistoryRepository;
