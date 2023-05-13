@@ -1,12 +1,12 @@
-package App;
+package WebFake;
 
-public class ResponseClass {
+public class Response {
     private int status;
     private String message;
     private String token = null;
     private Object data;
 
-    public ResponseClass(
+    public Response(
         int status,
         String message,
         String defToken,

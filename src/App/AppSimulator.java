@@ -5,13 +5,15 @@ import Controllers.Schedules.CreateNewScheduleController;
 import Controllers.Schedules.FindScheduleUseCaseController;
 import Model.Entities.Admin;
 import Model.Repositories.AdminsRepository;
+import WebFake.Request;
+import WebFake.Response;
 
 enum Context {
-    GUEST_HOME, SCHEDULE_SEARCH, HISTORY_SEARCH, ADMIN_LOGIN
+    GUEST_HOME, ADMIN
 }
 
 public class AppSimulator {
-    private String token = null;
+    private static String token = null;
     private static Context ctx = Context.GUEST_HOME;
 
     public static void main(String[] args) {
@@ -26,19 +28,17 @@ public class AppSimulator {
                 case GUEST_HOME:
                     guestContext();
                 break;
-                case SCHEDULE_SEARCH:
-                break;
-                case HISTORY_SEARCH:
-                break;
-                case ADMIN_LOGIN:
+                case ADMIN:
+
                 break;
             }
         }
     }
 
     public static void guestContext() {
-        int choose = IOHelper.guest();
-        ResponseClass response;
+        int choose = IOHelper.guestMenu();
+        Response response;
+        Request request;
 
         switch(choose) {
             case 1: // search schedule
@@ -46,32 +46,41 @@ public class AppSimulator {
                     "Digite seu rg", "Digite sua data de nascimento"
                 });
 
-                response = FindScheduleUseCaseController.handle(findScheduleFormData);
-                System.out.println(response.getMessage());
+                request = new Request(findScheduleFormData, null);
+
+                response = FindScheduleUseCaseController.handle(request);
                 break;
             case 2: // login as admin
                 String[] adminFormData = IOHelper.getStringArray(new String[] {
                     "Digite seu email", "Digite sua senha"
                 });
 
-                response = LoginController.handle(adminFormData);
+                request = new Request(adminFormData, null);
+
+                response = LoginController.handle(request);
                 break;
             case 3: // first donation
                 String[] firstDontationFormdData = IOHelper.getStringArray(new String[] {
                     "Digite seu rg", "Digite sua data de nascimento"
                 });
 
-                response = CreateNewScheduleController.handle(firstDontationFormdData);
-                System.out.println(response.getMessage());
-                break;
-            case 4: // search history
+                request = new Request(firstDontationFormdData, null);
 
+                response = CreateNewScheduleController.handle(request);
                 break;
             default:
                 System.out.println("Opção inválida");
-                break;
+                return;
         }
 
+        System.out.println(response.getMessage());
+        if (response.getData() != null) {
+            System.out.println(response.getData());
+        }
+        if (response.getToken() != null) {
+            token = response.getToken();
+            ctx = Context.ADMIN;
+        }
     }
 
 
