@@ -12,7 +12,6 @@ public class ClinicalScreening {
     private double height;
     private double weight;
     private double imc;
-
     
     public ClinicalScreening() {
         this.clinicalScreeningFailed = false;

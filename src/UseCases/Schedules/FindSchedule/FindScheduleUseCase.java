@@ -1,11 +1,11 @@
-package UseCases.Schedules.FindScheduleUseCase;
+package UseCases.Schedules.FindSchedule;
 
 import java.time.LocalDate;
 
 import Model.Entities.Schedule;
 import Model.Repositories.SchedulesRepository;
 
-public class FindScheduleController {
+public class FindScheduleUseCase {
     public Schedule findShedule(String rg, LocalDate dateOfBirth) {
         for (Schedule schedule : SchedulesRepository.getAll()) {
             if (schedule.getRg().equals(rg)) { // if rg is equal

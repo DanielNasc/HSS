@@ -45,14 +45,14 @@ public class SchedulesRepository {
         return null;
     }
 
-    public static ArrayList<Schedule> getByRg(String rg) {
-        ArrayList<Schedule> schedulesByRg = new ArrayList<Schedule>();
+    public static Schedule getByRg(String rg) {
         for (Schedule schedule : schedules) {
             if (schedule.getRg().equals(rg)) {
-                schedulesByRg.add(schedule);
+                return schedule;
             }
         }
-        return schedulesByRg;
+
+        return null;
     }
 
     public static void removeById(String id) {

@@ -3,17 +3,20 @@ package Model.Entities;
 import java.time.LocalDate;
 
 import Utils.RandomUtils;
+import Utils.enums.ScheduleStatus;
 
 public class Schedule {
     String id;
     String rg;
     LocalDate dateOfBirth;
     LocalDate date;
+    ScheduleStatus status;
     
     public Schedule(String rg, LocalDate dateOfBirth) {
         this.id = RandomUtils.generateId(12);
         this.rg = rg;
         this.dateOfBirth = dateOfBirth;
+        this.status = ScheduleStatus.PENDING;
 
         LocalDate now = LocalDate.now();
         // now + 1 day if today inst friday or saturday
@@ -42,9 +45,15 @@ public class Schedule {
     public LocalDate getDate() {
         return this.date;
     }
+    public ScheduleStatus getStatus() {
+        return status;
+    }
     
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+    public void changeStatus(ScheduleStatus newStatus) {
+        this.status = newStatus;
     }
 
     public String toString() {

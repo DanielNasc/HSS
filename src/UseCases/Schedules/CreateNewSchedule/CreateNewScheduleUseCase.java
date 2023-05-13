@@ -1,4 +1,4 @@
-package UseCases.Schedules.CreateNewScheduleUseCase;
+package UseCases.Schedules.CreateNewSchedule;
 
 import java.time.LocalDate;
 

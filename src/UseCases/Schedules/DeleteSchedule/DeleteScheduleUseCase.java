@@ -1,4 +1,4 @@
-package UseCases.Schedules.DeleteScheduleUseCase;
+package UseCases.Schedules.DeleteSchedule;
 
 import Model.Repositories.SchedulesRepository;
 
