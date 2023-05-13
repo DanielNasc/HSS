@@ -1,4 +1,4 @@
-package UseCases.DonationHistory;
+package UseCases.DonationsHistory;
 
 import Model.Entities.BloodDonator;
 import Model.Entities.DonationRegistry;

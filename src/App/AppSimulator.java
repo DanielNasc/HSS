@@ -28,8 +28,9 @@ public class AppSimulator {
                 case GUEST:
                     guestContext();
                 break;
+                case DONATOR:
+                break;
                 case ADMIN:
-
                 break;
             }
         }
