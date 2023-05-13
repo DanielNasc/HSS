@@ -3,12 +3,13 @@ package Controllers.Schedules;
 import java.time.LocalDate;
 
 import App.ResponseClass;
-import UseCases.Schedules.CreateNewScheduleUseCase;
+import Model.Entities.Schedule;
+import UseCases.Schedules.FindScheduleUseCase;
 
-public class CreateNewScheduleController {
+public class FindScheduleUseCaseController {
     public static ResponseClass handle(String[] request) {
         if (request.length != 2) {
-            return new ResponseClass(400, "", null, null);
+            return new ResponseClass(400, "Formato de dados inválido", null, null);
         }
 
         LocalDate dateOfBirth;
@@ -23,12 +24,12 @@ public class CreateNewScheduleController {
         }
 
         try {
-            boolean creationResult = CreateNewScheduleUseCase.execute(request[0], dateOfBirth);
+            Schedule schedule = FindScheduleUseCase.execute(request[0], dateOfBirth);
 
-            if (creationResult) {
-                return new ResponseClass(200, "Agendamento criado", null, null);
+            if (schedule != null) {
+                return new ResponseClass(200, "Agendamento encontrado", null, schedule);
             } else {
-                return new ResponseClass(400, "Agendamento já existe", null, null);
+                return new ResponseClass(400, "Agendamento não encontrado", null, null);
             }
         } catch (Error err) {
             return new ResponseClass(500, "Erro desconhecido", null, null);

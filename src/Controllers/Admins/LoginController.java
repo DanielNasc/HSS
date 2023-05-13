@@ -7,7 +7,7 @@ import Utils.RandomUtils;
 public class LoginController {
     public static ResponseClass handle(String[] request) {
         if (request.length != 2) {
-            return new ResponseClass(400, "", null);
+            return new ResponseClass(400, "", null, null);
         }
 
         try {
@@ -15,12 +15,12 @@ public class LoginController {
 
             if (loginResult) {
                 String token = RandomUtils.generateId(15);
-                return new ResponseClass(200, "Login bem sucedido", token);
+                return new ResponseClass(200, "Login bem sucedido", token, null);
             } else {
-                return new ResponseClass(400, "Dados de login inválidos", null);
+                return new ResponseClass(400, "Dados de login inválidos", null, null);
             }
         } catch (Error err) {
-            return new ResponseClass(500, "Erro desconhecido", null);
+            return new ResponseClass(500, "Erro desconhecido", null, null);
         }
     }
 }

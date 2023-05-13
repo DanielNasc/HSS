@@ -2,6 +2,7 @@ package App;
 
 import Controllers.Admins.LoginController;
 import Controllers.Schedules.CreateNewScheduleController;
+import Controllers.Schedules.FindScheduleUseCaseController;
 import Model.Entities.Admin;
 import Model.Repositories.AdminsRepository;
 
@@ -41,7 +42,12 @@ public class AppSimulator {
 
         switch(choose) {
             case 1: // search schedule
+                String[] findScheduleFormData = IOHelper.getStringArray(new String[] {
+                    "Digite seu rg", "Digite sua data de nascimento"
+                });
 
+                response = FindScheduleUseCaseController.handle(findScheduleFormData);
+                System.out.println(response.getMessage());
                 break;
             case 2: // login as admin
                 String[] adminFormData = IOHelper.getStringArray(new String[] {

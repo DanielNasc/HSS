@@ -4,15 +4,18 @@ public class ResponseClass {
     private int status;
     private String message;
     private String token = null;
+    private Object data;
 
     public ResponseClass(
         int status,
         String message,
-        String defToken
+        String defToken,
+        Object data
     ) {
         this.status = status;
         this.message = message;
         this.token = defToken;
+        this.data = data;
     }
 
     public int getStatus() {
@@ -25,5 +28,9 @@ public class ResponseClass {
 
     public String getMessage() {
         return message;
+    }
+
+    public Object getData() {
+        return data;
     }
 }
