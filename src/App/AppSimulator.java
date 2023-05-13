@@ -18,6 +18,16 @@ public class AppSimulator {
     // private static String token = null;
     private static Context ctx = Context.ADMIN;
 
+    public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
+    public static final String RED_BOLD = "\033[1;31m";    // RED
+    public static final String GREEN_BOLD = "\033[1;32m";  // GREEN
+    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    public static final String BLUE_BOLD = "\033[1;34m";   // BLUE
+    public static final String PURPLE_BOLD = "\033[1;35m"; // PURPLE
+    public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
+    public static final String WHITE_BOLD = "\033[1;37m";  // WHITE
+    public static final String ANSI_RESET = "\u001B[0m";
+
     public static void main(String[] args) {
         Admin defaultAdmin = new Admin( "default", 
                                         "1234567890", 
@@ -77,19 +87,12 @@ public class AppSimulator {
                 return;
         }
 
-        System.out.println(response.getMessage());
-        if (response.getData() != null) {
-            System.out.println(response.getData());
-        }
-        if (response.getToken() != null) {
-            // token = response.getToken();
-            ctx = Context.ADMIN;
-        }
+        IOHelper.handleResponse(response);
     }
 
     public static void adminContext() {
         int choose = IOHelper.adminMenu();
-        Response response;
+        Response response = new Response(200, BLUE_BOLD, BLACK_BOLD, ANSI_RESET);
         Request request;
 
         switch(choose) {
@@ -128,8 +131,9 @@ public class AppSimulator {
 
                 Response firstResponse = FirstScreeningController.handle(firstRequest);
 
-                if (firstResponse.getStatus() != 201) {
-                    System.out.println(firstResponse.getMessage());
+                IOHelper.handleResponse(firstResponse);
+                if (firstResponse.getStatus() != 200) {
+                    return;
                 }
 
                 // Second
@@ -182,5 +186,7 @@ public class AppSimulator {
                 System.out.println("Opção inválida");
                 return;
         }
+
+        IOHelper.handleResponse(response);
     }
 }
