@@ -24,7 +24,7 @@ public class TestDonator {
         assert(luannBloodDonator.getCpf().equals("12345678910"));
         assert(luannBloodDonator.getEmail().equals("luann@gmail"));
         assert(luannBloodDonator.getDateOfBirth().equals(LocalDate.of(1999, 07, 05)));
-        assert(luannBloodDonator.getSex().equals("M"));
+        assert(luannBloodDonator.getGender().equals("M"));
         assert(luannBloodDonator.getBloodType().equals("O+"));
         assert(luannBloodDonator.getAddress().equals("Rua 1"));
     }

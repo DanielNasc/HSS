@@ -10,14 +10,14 @@ public class DonatorRepository {
     public DonatorRepository() {
         donators = new ArrayList<BloodDonator>();
     }
-    public void addDonator(BloodDonator donator) {
+    public static void addDonator(BloodDonator donator) {
         if (checkDonator(donator.getCpf())) {
             System.out.println("Doador já cadastrado");
             return;
         }
         donators.add(donator);
     }
-    public boolean checkDonator(String cpf) {
+    public static boolean checkDonator(String cpf) {
         for (BloodDonator donator : donators) {
             if (donator.getCpf().equals(cpf)) {
                 return true;
@@ -25,10 +25,10 @@ public class DonatorRepository {
         }
         return false;
     }
-    public List<BloodDonator> getAll() {
+    public static List<BloodDonator> getAll() {
         return donators;
     }
-    public void printDonatorsByBloodType(String bloodType) {
+    public static void printDonatorsByBloodType(String bloodType) {
         for (BloodDonator donator : donators) {
             if (donator.getBloodType().equals(bloodType)) {
                 System.out.println(donator.getName() + 
@@ -38,7 +38,7 @@ public class DonatorRepository {
             }
         }
     }
-    public BloodDonator getByCPF(String cpf) {
+    public static BloodDonator getByCPF(String cpf) {
         for (BloodDonator donator : donators) {
             if (donator.getCpf().equals(cpf)) {
                 return donator;
@@ -46,7 +46,16 @@ public class DonatorRepository {
         }
         return null;
     }
-    public void removeByCPF(String cpf) {
+    public static BloodDonator getByRG(String rg) {
+        for (BloodDonator donator : donators) {
+            if (donator.getCpf().equals(rg)) {
+                return donator;
+            }
+        }
+        return null;
+    }
+
+    public static void removeByCPF(String cpf) {
         for (BloodDonator donator: donators) {
             if (donator.getCpf().equals(cpf)) {
                 donators.remove(donator);
@@ -55,7 +64,7 @@ public class DonatorRepository {
             }
         }
     }
-    public int numberOfDonators() {
+    public static int numberOfDonators() {
         return donators.size();
     }
 }

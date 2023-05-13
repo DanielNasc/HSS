@@ -396,10 +396,6 @@ public class RandomUtils {
     // É virgem?
     // É casada?
     // Já teve malária?
-    // Teve contato sexual com alguma pessoa com AIDS ou com teste positivo para HIV?
-    // Teve contato sexual em troca de dinheiro ou de drogas ou seus respectivos parceiros sexuais?
-    // Teve contato sexual com usuário de droga endovenosa?
-    // Teve contato sexual com pessoa que tenha recebido transfusão de sangue nos últimos 12 meses?
     // Sofreu algum acidente grave no último ano?
     // Teve sífilis ou gonorréia no último ano?
     // Teve câncer?

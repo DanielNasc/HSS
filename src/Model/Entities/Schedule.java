@@ -16,7 +16,7 @@ public class Schedule {
         this.id = RandomUtils.generateId(12);
         this.rg = rg;
         this.dateOfBirth = dateOfBirth;
-        this.status = ScheduleStatus.PENDING;
+        this.status = ScheduleStatus.WAITING_DATE;
 
         LocalDate now = LocalDate.now();
         // now + 1 day if today inst friday or saturday
@@ -27,7 +27,6 @@ public class Schedule {
         }
 
         this.date = now;
-        
     }
 
     public String getId() {

@@ -26,11 +26,10 @@ public class ClinicalScreening {
 
         for(int i = 0; i < tam; i++) {
             if(answears[i]) {
-                System.out.println("Infelizmente, de acordo com as perguntas iniciais da Triagem Clínica, você não está apto(a) para doar.");
                 this.clinicalScreeningFailed = true;
+                break;
             }
         }
-        if(!this.clinicalScreeningFailed) 
             System.out.println("Tudo certo, prosseguir para a próxima etapa de perguntas (Perguntas Influẽnciáveis)");
     }
 
@@ -56,6 +55,10 @@ public class ClinicalScreening {
                 break;
             }
         }
+    }
+
+    public boolean getClinicalScreeningFailed() {
+        return this.clinicalScreeningFailed;
     }
 
     public boolean getBloodPressureInfluence() {
@@ -131,4 +134,5 @@ public class ClinicalScreening {
     public double getIMC() {
         return this.imc;
     }
+
 }

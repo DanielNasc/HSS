@@ -1,5 +1,5 @@
 package Utils.enums;
 
 public enum ScheduleStatus {
-    PENDING, SUCESS, FAILED
+    WAITING_DATE, FIRST_SCREENING, SECOND_SCREENING, SUCESS, FAILED
 }

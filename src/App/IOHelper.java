@@ -12,7 +12,6 @@ public class IOHelper {
         System.out.println("1 - Checar Agendamento");
         System.out.println("2 - Logar como Admin");
         System.out.println("3 - Doador de primeira viagem");
-        System.out.println("4 - Checar histórico");
 
         choose = scanner.nextInt();
         scanner.nextLine();

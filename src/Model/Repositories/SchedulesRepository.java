@@ -3,6 +3,7 @@ package Model.Repositories;
 import java.util.ArrayList;
 
 import Model.Entities.Schedule;
+import Utils.enums.ScheduleStatus;
 
 public class SchedulesRepository {
     private static ArrayList<Schedule> schedules = new ArrayList<Schedule>();
@@ -53,6 +54,17 @@ public class SchedulesRepository {
         }
 
         return null;
+    }
+
+    public static boolean updateSchedule(String rg, ScheduleStatus newStatus) {
+        for (Schedule schedule: schedules) {
+            if (schedule.getRg().equals(rg)) {
+                schedule.changeStatus(newStatus);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void removeById(String id) {
