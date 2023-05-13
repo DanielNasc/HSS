@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import Model.Entities.DonationRegistry;
 
 public class DonationHistoryRepository {
-    private ArrayList<DonationRegistry> donationsHistory = new ArrayList<DonationRegistry>();
+    private static ArrayList<DonationRegistry> donationsHistory = new ArrayList<DonationRegistry>();
 
-    public void add(DonationRegistry newDonationRegistry){
+    public static void add(DonationRegistry newDonationRegistry){
+        if (donationsHistory.contains(newDonationRegistry)) {
+            throw new Error("This donation already exist");
+        }
+
         donationsHistory.add(newDonationRegistry);
     }
     
-    public ArrayList<DonationRegistry> getAll() {
+    public static ArrayList<DonationRegistry> getAll() {
         return donationsHistory;
     }
 
-    public DonationRegistry getById(String id) {
+    public static DonationRegistry getById(String id) {
         for (DonationRegistry donationRegistry: donationsHistory) {
             if (donationRegistry.getId().equals(id)) {
                 return donationRegistry;
@@ -25,7 +29,7 @@ public class DonationHistoryRepository {
         return null;
     }
 
-    public DonationRegistry getByDonatorId(String donatorId) {
+    public static DonationRegistry getByDonatorId(String donatorId) {
         for (DonationRegistry donationRegistry: donationsHistory) {
             if (donationRegistry.getdonatorID().equals(donatorId)) {
                 return donationRegistry;
@@ -35,7 +39,7 @@ public class DonationHistoryRepository {
         return null;
     }
 
-    public void deleteByID(String id) {
+    public static void deleteByID(String id) {
         for (DonationRegistry donationRegistry: donationsHistory) {
             if (donationRegistry.getdonatorID().equals(id)) {
                 donationsHistory.remove(donationRegistry);
@@ -44,7 +48,7 @@ public class DonationHistoryRepository {
         }
     }
 
-    public void deleteByDonatorId(String donatorId) {
+    public static void deleteByDonatorId(String donatorId) {
         for (DonationRegistry donationRegistry: donationsHistory) {
             if (donationRegistry.getdonatorID().equals(donatorId)) {
                 donationsHistory.remove(donationRegistry);

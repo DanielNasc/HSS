@@ -16,7 +16,7 @@ public class DonationRegistry {
     private String donatorID;
     private LocalDate date;
 
-    DonationRegistry (
+    public DonationRegistry (
         int[] bloodPressure,
         int heartBeats,
         double bodyTemperature,
@@ -69,4 +69,9 @@ public class DonationRegistry {
     public LocalDate getDate() {
         return date;
     }
+
+    public boolean equals(DonationRegistry comparedDonation) {
+        return this.donatorID.equals(comparedDonation.getdonatorID())
+                && this.date.equals(comparedDonation.getDate());
+    }   
 }
