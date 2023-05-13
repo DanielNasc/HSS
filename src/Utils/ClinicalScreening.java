@@ -30,7 +30,6 @@ public class ClinicalScreening {
                 break;
             }
         }
-            System.out.println("Tudo certo, prosseguir para a próxima etapa de perguntas (Perguntas Influẽnciáveis)");
     }
 
     public void checkClinicalScreeningInfluentialQuestions(int[] answears) {

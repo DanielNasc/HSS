@@ -13,8 +13,12 @@ public class FirstScreeningController {
             clinicalScreeningOffsideQuestions[i] = payload[1].charAt(i) != '0';
         }
 
-        FirstScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions);
+        try {
+            FirstScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions);
+        } catch (Exception err) {
+            return new Response(400, null, null, clinicalScreeningOffsideQuestions);
+        }
 
-        return new Response(200, "", null, null);
+        return new Response(200, "Tudo certo, prosseguir para a próxima etapa de perguntas (Perguntas Influẽnciáveis)", null, null);
     }
 }

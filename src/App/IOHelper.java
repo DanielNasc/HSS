@@ -42,4 +42,37 @@ public class IOHelper {
 
         return results;
     }
+
+    public static int getNumberInRange(int a, int b) {
+        if (a > b) {
+            throw new Error("Invalid range");
+        }
+
+        try {
+            int number = Integer.parseInt(getLine());
+            if (number < a || number > b)
+                throw new Exception();
+            return number;
+        } catch (Exception err) {
+            System.out.println("Digite um número no intervalo [ "+ a + ", " + b + " ]");
+            return getNumberInRange(a, b);
+        }
+    }
+
+    public static String getLine() {
+        return scanner.nextLine();
+    }
+
+    public static String generateStringWithResponseInRange(String[] prompts, int a, int b) {
+        String answers = "";
+
+        for (String prompt: prompts) {
+            System.out.println(prompt);
+            answers += getNumberInRange(a, b);
+        }
+
+        return answers;
+    }
+
+    
 }
