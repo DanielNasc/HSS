@@ -1,6 +1,7 @@
 package App;
 
 import Controllers.Admins.LoginController;
+import Controllers.Schedules.CreateNewScheduleController;
 import Model.Entities.Admin;
 import Model.Repositories.AdminsRepository;
 
@@ -48,13 +49,14 @@ public class AppSimulator {
                 });
 
                 response = LoginController.handle(adminFormData);
-                System.out.println(response.getMessage());
                 break;
             case 3: // first donation
                 String[] firstDontationFormdData = IOHelper.getStringArray(new String[] {
                     "Digite seu rg", "Digite sua data de nascimento"
                 });
 
+                response = CreateNewScheduleController.handle(firstDontationFormdData);
+                System.out.println(response.getMessage());
                 break;
             case 4: // search history
 
@@ -63,6 +65,7 @@ public class AppSimulator {
                 System.out.println("Opção inválida");
                 break;
         }
+
     }
 
 
