@@ -15,7 +15,7 @@ public class TestDonatorRep {
         "12345678910",
         "luann@gmail",
         LocalDate.of(1999, 07, 05),
-        "M",
+        0,
         "O+",
         "Rua 1"
     );
@@ -25,7 +25,7 @@ public class TestDonatorRep {
         "97898546456",
         "Luma@gmail",
         LocalDate.of(1999, 07, 05),
-        "F",
+        0,
         "O-",
         "Rua 3"
     );

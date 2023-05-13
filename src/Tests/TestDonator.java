@@ -13,7 +13,7 @@ public class TestDonator {
         "12345678910",
         "luann@gmail",
         LocalDate.of(1999, 07, 05),
-        "M",
+        0,
         "O+",
         "Rua 1"
     );
@@ -24,7 +24,7 @@ public class TestDonator {
         assert(luannBloodDonator.getCpf().equals("12345678910"));
         assert(luannBloodDonator.getEmail().equals("luann@gmail"));
         assert(luannBloodDonator.getDateOfBirth().equals(LocalDate.of(1999, 07, 05)));
-        assert(luannBloodDonator.getGender().equals("M"));
+        assert(luannBloodDonator.getGender() == 0);
         assert(luannBloodDonator.getBloodType().equals("O+"));
         assert(luannBloodDonator.getAddress().equals("Rua 1"));
     }
