@@ -1,5 +1,6 @@
 package Model.Repositories;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Model.Entities.Schedule;
@@ -52,6 +53,20 @@ public class SchedulesRepository {
                 return schedule;
             }
         }
+
+        return null;
+    }
+
+    public static Schedule findOne(String rg, LocalDate dateOfBirth) {
+        for (Schedule schedule : schedules) {
+            if (schedule.getRg().equals(rg)) { // if rg is equal
+                if (schedule.getDateOfBirth().equals(dateOfBirth) && schedule.getStatus() == ScheduleStatus.WAITING_DATE) { // and date of birth is equal
+                    return schedule;
+                }
+                
+                return null; // if rg is equal but date of birth is not equal
+            }
+        } 
 
         return null;
     }
