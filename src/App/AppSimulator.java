@@ -1,6 +1,7 @@
 package App;
 
 import Controllers.Admins.LoginController;
+import Controllers.BloodDonator.CreateDonatorController;
 import Controllers.DonationsHistory.FirstScreeningController;
 import Controllers.DonationsHistory.SecondScreeningController;
 import Controllers.Schedules.CreateNewScheduleController;
@@ -16,7 +17,7 @@ enum Context {
 
 public class AppSimulator {
     // private static String token = null;
-    private static Context ctx = Context.ADMIN;
+    private static Context ctx = Context.DONATOR;
 
     public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
     public static final String RED_BOLD = "\033[1;31m";    // RED
@@ -41,6 +42,7 @@ public class AppSimulator {
                     guestContext();
                 break;
                 case DONATOR:
+                    donatorContext();
                 break;
                 case ADMIN:
                     adminContext();
@@ -72,6 +74,11 @@ public class AppSimulator {
                 request = new Request(adminFormData, null);
 
                 response = LoginController.handle(request);
+
+                if (response.getStatus() == 200) {
+                    ctx = Context.ADMIN;
+                }
+
                 break;
             case 3: // first donation
                 String[] firstDontationFormdData = IOHelper.getStringArray(new String[] {
@@ -87,6 +94,39 @@ public class AppSimulator {
                 return;
         }
 
+        IOHelper.handleResponse(response);
+    }
+
+    public static void donatorContext() {
+        int choose = IOHelper.donatorMenu();
+        Response response = new Response(0, null, null, null);
+        Request request;
+
+        switch(choose) {
+            case 1: // create profile
+                String[] createProfileFormData = IOHelper.getStringArray(new String[] {
+                    "Digite seu nome", "Digite seu cpf", "Digite seu email",
+                    "Digite seu Rg", "Digite sua data de nascimento",
+                    "Digite seu gênero (0 - Homem, 1 - Mulher)",
+                    "Digite o tipo sanguíneo",
+                    "Digite seu endereço"
+                });
+
+                request = new Request(createProfileFormData, null);
+
+                response = CreateDonatorController.handle(request);
+                break;
+            case 2: // exams
+            case 3: // carteirinha
+            case 4: // agendamento
+            case 5: // logout
+                ctx = Context.GUEST;
+                break;
+            default:
+                IOHelper.printError("Opção inválida");
+            break;
+        }
+        
         IOHelper.handleResponse(response);
     }
 

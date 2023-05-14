@@ -35,16 +35,37 @@ public class IOHelper {
 
     public static int adminMenu() {
         int choose;
-        System.out.println("\033[0;1mSelecione uma opção");
+        System.out.println();
+
+        System.out.println(WHITE_BOLD+"Selecione uma opção");
 
         System.out.println("1 - Modificar agendamento");
-        System.out.println("2 - Realizar triagem\033[0;0m");
+        System.out.println("2 - Realizar triagem"+ANSI_RESET);
 
         choose = scanner.nextInt();
         scanner.nextLine();
 
         System.out.println();
         
+        return choose;
+    }
+
+    public static int donatorMenu() {
+        int choose;
+
+        System.out.println();
+        System.out.println(WHITE_BOLD+"Selecione uma opção");
+
+        System.out.println("1 - Atualizar perfil");
+        System.out.println("2 - Verificar Exames");
+        System.out.println("3 - Carteirnha");
+        System.out.println("4 - Agendamento");
+        System.out.println("5 - Sair da conta"+ANSI_RESET);
+
+        choose = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println();
+
         return choose;
     }
 
@@ -112,4 +133,8 @@ public class IOHelper {
     }    
 
     public static void printLogo() {}
+
+    public static void printError(String message) {
+        System.out.println(RED_BOLD + message + ANSI_RESET);
+    }
 }
