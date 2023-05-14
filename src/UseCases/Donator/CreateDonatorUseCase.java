@@ -25,6 +25,7 @@ public class CreateDonatorUseCase {
                                                     bloodType,
                                                     address, rg);
 
+
         DonatorRepository.addDonator(bloodDonator);
     }
 }

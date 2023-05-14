@@ -5,11 +5,8 @@ import java.util.List;
 import Model.Entities.BloodDonator;
 
 public class DonatorRepository {
-    private static List<BloodDonator> donators;
+    private static List<BloodDonator> donators = new ArrayList<BloodDonator>();
 
-    public DonatorRepository() {
-        donators = new ArrayList<BloodDonator>();
-    }
     public static void addDonator(BloodDonator donator) {
         if (checkDonator(donator.getCpf())) {
             throw new Error("Doador já cadastrado");
