@@ -46,7 +46,7 @@ public class CreateDonatorController {
                                             gender, 
                                             payload[6], 
                                             payload[7]);
-        } catch (Exception err) {
+        } catch (Error err) {
             return new Response(400, "Dados inválidos", null, null);
         }
         

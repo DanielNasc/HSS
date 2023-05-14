@@ -12,6 +12,7 @@ public class DonatorRepository {
         if (checkDonator(donator.getCpf())) {
             throw new Error("Doador já cadastrado");
         }
+
         donators.add(donator);
     }
     public static boolean checkDonator(String cpf) {

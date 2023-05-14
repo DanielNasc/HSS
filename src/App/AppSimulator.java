@@ -2,6 +2,7 @@ package App;
 
 import Controllers.Admins.LoginController;
 import Controllers.BloodDonator.CreateDonatorController;
+import Controllers.BloodDonator.GetCardController;
 import Controllers.DonationsHistory.FirstScreeningController;
 import Controllers.DonationsHistory.GetExamsController;
 import Controllers.DonationsHistory.SecondScreeningController;
@@ -105,9 +106,11 @@ public class AppSimulator {
         Response response = new Response(0, null, null, null);
         Request request;
         String rg;
+        System.out.println("choose: " + choose);
 
         switch(choose) {
             case 1: // create profile
+                System.out.println("um");
                 String[] createProfileFormData = IOHelper.getStringArray(new String[] {
                     "Digite seu nome", "Digite seu cpf", "Digite seu email",
                     "Digite seu Rg", "Digite sua data de nascimento",
@@ -121,6 +124,7 @@ public class AppSimulator {
                 response = CreateDonatorController.handle(request);
                 break;
             case 2: // exams
+                System.out.println("dois");
                 rg = Token.GetID(token);
 
                 if (rg.equals(null)) {
@@ -131,8 +135,20 @@ public class AppSimulator {
                 request = new Request(new String[] {rg}, token);
 
                 response = GetExamsController.handle(request);
+                break;
             case 3: // carteirinha
+                System.out.println("tres");
+                rg = Token.GetID(token);
+
+                if (rg.equals(null)) {
+                    ctx = Context.GUEST;
+                    break;
+                }
                 
+                request = new Request(new String[] {rg}, token);
+
+                response = GetCardController.handle(request);
+                break;
             case 4: // agendamento
                 rg = Token.GetID(token);
 
@@ -143,12 +159,13 @@ public class AppSimulator {
             
                 request = new Request(new String[] {rg}, token);
                 response = FindScheduleUseCaseController.handle(request);
+                break;
             case 5: // logout
                 ctx = Context.GUEST;
-                break;
+                return;
             default:
                 IOHelper.printError("Opção inválida");
-            break;
+                break;
         }
         
         handleResponse(response);

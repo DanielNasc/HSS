@@ -19,7 +19,7 @@ public class GetExamsController {
 
         ArrayList<DonationRegistry> registries = GetExamsUseCase.execute(rg);
 
-        if (registries.size() == 0) {
+        if (registries == null || registries.size() == 0) {
             return new Response(404, "Não foi encontrado um exame para este RG", null, null);
         }
 

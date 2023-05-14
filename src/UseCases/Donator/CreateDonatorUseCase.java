@@ -6,7 +6,7 @@ import Model.Entities.BloodDonator;
 import Model.Repositories.DonatorRepository;
 
 public class CreateDonatorUseCase {
-    public static void execute(
+    public static boolean execute(
         String name,
         String cpf,
         String email,
@@ -26,6 +26,11 @@ public class CreateDonatorUseCase {
                                                     address, rg);
 
 
-        DonatorRepository.addDonator(bloodDonator);
+        try {
+            DonatorRepository.addDonator(bloodDonator);
+            return true;
+        } catch(Error error) {
+            return false;
+        }
     }
 }

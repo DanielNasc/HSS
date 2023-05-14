@@ -117,18 +117,24 @@ public class IOHelper {
         System.out.println();
         if (response.getStatus() >= 400) {
             System.out.println(RED_BOLD + "STATUS: " + response.getStatus());
-            System.out.println("MESSAGE: " + response.getMessage() + ANSI_RESET);
+            System.out.println("MESSAGE: " + response.getMessage());
         }
         else if (response.getStatus() >= 300) {
             System.out.println(BLUE_BOLD + "STATUS: " + response.getStatus());
-            System.out.println("MESSAGE: " + response.getMessage() + ANSI_RESET);
+            System.out.println("MESSAGE: " + response.getMessage());
         } else if (response.getStatus() >= 200) {
             System.out.println(GREEN_BOLD + "STATUS: " + response.getStatus());
-            System.out.println("MESSAGE: " + response.getMessage() + ANSI_RESET);
+            System.out.println("MESSAGE: " + response.getMessage());
         } else {
             System.out.println(WHITE_BOLD + "STATUS: " + response.getStatus());
-            System.out.println("MESSAGE: " + response.getMessage() + ANSI_RESET);
+            System.out.println("MESSAGE: " + response.getMessage());
         }
+
+        if (response.getData() != null) {
+            System.out.println("DADOS: ");
+            System.err.println(response.getData());
+        }
+
         System.out.println();
     }    
 
