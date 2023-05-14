@@ -2,8 +2,6 @@ package Controllers.BloodDonator;
 
 import java.time.LocalDate;
 
-import Model.Entities.BloodDonator;
-import Model.Repositories.DonatorRepository;
 import UseCases.Donator.CreateDonatorUseCase;
 import WebFake.Request;
 import WebFake.Response;
@@ -13,17 +11,11 @@ public class CreateDonatorController {
     public static Response handle(Request request) {
         String[] tokenData = Token.BreakToken(request.getToken());
 
-        if (tokenData == null || tokenData[0] != "DONATOR") {
+        if (tokenData == null || !tokenData[0].equals("DONATOR")) {
             return new Response(403, "Operação não permitida", null, null);
         }
 
-        BloodDonator donator = DonatorRepository.getByRG(tokenData[1]);
         String[] payload = request.getPayload();
-
-        if (donator == null || donator.getRG() != payload[3]) {
-            return new Response(403, "Operação não permitida", null, null);
-        }
-
 
         LocalDate dateOfBirth;
         try {
@@ -55,7 +47,6 @@ public class CreateDonatorController {
                                             payload[6], 
                                             payload[7]);
         } catch (Exception err) {
-            System.out.println(err.getMessage());
             return new Response(400, "Dados inválidos", null, null);
         }
         

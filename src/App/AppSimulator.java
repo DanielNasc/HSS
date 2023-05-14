@@ -104,6 +104,7 @@ public class AppSimulator {
         int choose = IOHelper.donatorMenu();
         Response response = new Response(0, null, null, null);
         Request request;
+        String rg;
 
         switch(choose) {
             case 1: // create profile
@@ -115,14 +116,14 @@ public class AppSimulator {
                     "Digite seu endereço"
                 });
 
-                request = new Request(createProfileFormData, null);
+                request = new Request(createProfileFormData, token);
 
                 response = CreateDonatorController.handle(request);
                 break;
             case 2: // exams
-                String rg = Token.GetID(token);
+                rg = Token.GetID(token);
 
-                if (rg == null) {
+                if (rg.equals(null)) {
                     ctx = Context.GUEST;
                     break;
                 }
@@ -131,7 +132,17 @@ public class AppSimulator {
 
                 response = GetExamsController.handle(request);
             case 3: // carteirinha
+                
             case 4: // agendamento
+                rg = Token.GetID(token);
+
+                if (rg == null) {
+                    ctx = Context.GUEST;
+                    break;
+                }
+            
+                request = new Request(new String[] {rg}, token);
+                response = FindScheduleUseCaseController.handle(request);
             case 5: // logout
                 ctx = Context.GUEST;
                 break;
@@ -233,7 +244,6 @@ public class AppSimulator {
                     rg, IQ, hypertense
                 }, token);
                 response = SecondScreeningController.handle(request);
-                System.out.println(response.getMessage());
                 break;
             default:
                 System.out.println("Opção inválida");
@@ -246,12 +256,11 @@ public class AppSimulator {
     public static void handleResponse(Response response) {
         if (response.getToken() != null) {
             token = response.getToken();
-            System.out.println(token);
             String type = Token.GetType(token);
 
-            if (type == "ADM") {
+            if (type.equals("ADM")) {
                 ctx = Context.ADMIN;
-            } else if (type == "DONATOR") {
+            } else if (type.equals("DONATOR")) {
                 ctx = Context.DONATOR;
             }
         }

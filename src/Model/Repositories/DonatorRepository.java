@@ -45,7 +45,7 @@ public class DonatorRepository {
     }
     public static BloodDonator getByRG(String rg) {
         for (BloodDonator donator : donators) {
-            if (donator.getCpf().equals(rg)) {
+            if (donator.getRG().equals(rg)) {
                 return donator;
             }
         }
