@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import UseCases.Schedules.CreateNewScheduleUseCase;
 import WebFake.Request;
 import WebFake.Response;
+import WebFake.Token;
 
 public class CreateNewScheduleController {
     public static Response handle(Request request) {
@@ -28,9 +29,10 @@ public class CreateNewScheduleController {
 
         try {
             boolean creationResult = CreateNewScheduleUseCase.execute(payload[0], dateOfBirth);
+            String token = Token.CreateToken("DONATOR", payload[0]);
 
             if (creationResult) {
-                return new Response(200, "Agendamento criado", null, null);
+                return new Response(200, "Agendamento criado", token, null);
             } else {
                 return new Response(400, "Agendamento já existe", null, null);
             }

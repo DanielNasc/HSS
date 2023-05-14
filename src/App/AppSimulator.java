@@ -88,6 +88,24 @@ public class AppSimulator {
                 request = new Request(firstDontationFormdData, null);
 
                 response = CreateNewScheduleController.handle(request);
+
+                handleResponse(response);
+
+                if (response.getStatus() >= 400) {
+                    return;
+                }
+
+                String[] createProfileFormData = IOHelper.getStringArray(new String[] {
+                    "Digite seu nome", "Digite seu cpf", "Digite seu email",
+                    "Digite seu Rg", "Digite sua data de nascimento",
+                    "Digite seu gênero (0 - Homem, 1 - Mulher)",
+                    "Digite o tipo sanguíneo",
+                    "Digite seu endereço"
+                });
+
+                request = new Request(createProfileFormData, token);
+
+                response = CreateDonatorController.handle(request);
                 break;
             default:
                 System.out.println("Opção inválida");
@@ -104,20 +122,7 @@ public class AppSimulator {
         String rg;
 
         switch(choose) {
-            case 1: // create profile
-                String[] createProfileFormData = IOHelper.getStringArray(new String[] {
-                    "Digite seu nome", "Digite seu cpf", "Digite seu email",
-                    "Digite seu Rg", "Digite sua data de nascimento",
-                    "Digite seu gênero (0 - Homem, 1 - Mulher)",
-                    "Digite o tipo sanguíneo",
-                    "Digite seu endereço"
-                });
-
-                request = new Request(createProfileFormData, token);
-
-                response = CreateDonatorController.handle(request);
-                break;
-            case 2: // exams
+            case 1: // exams
                 rg = Token.GetID(token);
 
                 if (rg.equals(null)) {
@@ -129,7 +134,7 @@ public class AppSimulator {
 
                 response = GetExamsController.handle(request);
                 break;
-            case 3: // carteirinha
+            case 2: // carteirinha
                 rg = Token.GetID(token);
 
                 if (rg.equals(null)) {
@@ -141,7 +146,7 @@ public class AppSimulator {
 
                 response = GetCardController.handle(request);
                 break;
-            case 4: // agendamento
+            case 3: // agendamento
                 rg = Token.GetID(token);
 
                 if (rg == null) {
@@ -152,7 +157,7 @@ public class AppSimulator {
                 request = new Request(new String[] {rg}, token);
                 response = FindScheduleUseCaseController.handle(request);
                 break;
-            case 5: // logout
+            case 4: // logout
                 ctx = Context.GUEST;
                 return;
             default:
