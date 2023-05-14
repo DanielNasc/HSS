@@ -28,8 +28,6 @@ public class IOHelper {
         choose = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("");
-
         return choose;
     }
 
@@ -40,13 +38,12 @@ public class IOHelper {
         System.out.println(WHITE_BOLD+"Selecione uma opção");
 
         System.out.println("1 - Modificar agendamento");
-        System.out.println("2 - Realizar triagem"+ANSI_RESET);
+        System.out.println("2 - Realizar triagem");
+        System.out.println("3 - Sair da conta"+ANSI_RESET);
 
         choose = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println();
-        
         return choose;
     }
 
@@ -64,7 +61,6 @@ public class IOHelper {
 
         choose = scanner.nextInt();
         scanner.nextLine();
-        System.out.println();
 
         return choose;
     }
@@ -75,7 +71,7 @@ public class IOHelper {
         String[] results = new String[prompts.length];
 
         for (int i = 0; i < prompts.length; i++) {
-            System.out.print(prompts[i] + ": ");
+            System.out.print(WHITE_BOLD+prompts[i] + ": " + ANSI_RESET);
             results[i] = scanner.nextLine();
         }
 
@@ -106,7 +102,7 @@ public class IOHelper {
         String answers = "";
 
         for (String prompt: prompts) {
-            System.out.print(prompt + " ");
+            System.out.print(WHITE_BOLD+ prompt + " " + ANSI_RESET);
             answers += getNumberInRange(a, b);
         }
 
@@ -131,11 +127,10 @@ public class IOHelper {
         }
 
         if (response.getData() != null) {
-            System.out.println("DADOS: ");
+            System.out.println(BLUE_BOLD+"DADOS: ");
             System.err.println(response.getData());
         }
-
-        System.out.println();
+        System.out.println(ANSI_RESET);
     }    
 
     public static void printLogo() {}

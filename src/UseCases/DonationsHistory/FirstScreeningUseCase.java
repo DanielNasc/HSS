@@ -5,7 +5,7 @@ import Utils.ClinicalScreening;
 import Utils.enums.ScheduleStatus;
 
 public class FirstScreeningUseCase {
-    public static void execute(
+    public static boolean execute(
         String rg,
         boolean[] clinicalScreeningOffsideQuestions
     ) {
@@ -16,7 +16,9 @@ public class FirstScreeningUseCase {
         if (clinicalScreening.getClinicalScreeningFailed()) {
             SchedulesRepository.updateSchedule(rg, ScheduleStatus.FAILED);
 
-            throw new Error("Infelizmente, de acordo com as perguntas iniciais da Triagem Clínica, você não está apto(a) para doar.");
+            return false;
         }
+
+        return true;
     }
 }

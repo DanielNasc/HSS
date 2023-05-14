@@ -15,6 +15,11 @@ public class SecondScreeningUseCase {
         boolean hypertensive
     ) {
         BloodDonator donator = DonatorRepository.getByRG(rg);
+
+        if (donator == null) {
+            throw new Error("Doador não existe.");
+        }
+
         ClinicalScreening clinicalScreening = new ClinicalScreening();
 
         clinicalScreening.checkClinicalScreeningInfluentialQuestions(clinicalScreeningInfluentialQuestions);

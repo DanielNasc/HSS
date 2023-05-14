@@ -10,7 +10,7 @@ public class SecondScreeningController {
     public static Response handle(Request request) {
         String[] tokenData = Token.BreakToken(request.getToken());
 
-        if (tokenData == null || tokenData[0] != "ADM" || AdminsRepository.getById(tokenData[1]) == null) {
+        if (tokenData == null || !tokenData[0].equals("ADM") || AdminsRepository.getById(tokenData[1]) == null) {
             return new Response(403, "Operação não permitida", null, null);
         }
 
@@ -23,7 +23,11 @@ public class SecondScreeningController {
 
         boolean hypertensive = payload[2] == "1";
 
-        SecondScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions, hypertensive);
+        try {
+            SecondScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions, hypertensive);
+        } catch(Error err) {
+            return new Response(400, err.getMessage(), null, null);
+        }
 
         return new Response(200, "Doação bem sucedida", null, null);
     }

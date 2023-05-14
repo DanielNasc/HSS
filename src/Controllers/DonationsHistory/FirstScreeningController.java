@@ -10,7 +10,7 @@ public class FirstScreeningController {
     public static Response handle(Request request) {
         String[] tokenData = Token.BreakToken(request.getToken());
 
-        if (tokenData == null || tokenData[0] != "ADM" || AdminsRepository.getById(tokenData[1]) == null) {
+        if (tokenData == null || !tokenData[0].equals("ADM") || AdminsRepository.getById(tokenData[1]) == null) {
             return new Response(403, "Operação não permitida", null, null);
         }
 
@@ -21,10 +21,10 @@ public class FirstScreeningController {
             clinicalScreeningOffsideQuestions[i] = payload[1].charAt(i) != '0';
         }
 
-        try {
-            FirstScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions);
-        } catch (Error err) {
-            return new Response(400, err.getMessage(), null, clinicalScreeningOffsideQuestions);
+        boolean result = FirstScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions);
+
+        if (!result) {
+            return new Response(400, "Infelizmente, de acordo com as perguntas iniciais da Triagem Clínica, você não está apto(a) para doar.", null, null);
         }
 
         return new Response(200, "Tudo certo, prosseguir para a próxima etapa de perguntas (Perguntas Influẽnciáveis)", null, null);

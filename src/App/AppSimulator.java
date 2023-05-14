@@ -6,6 +6,7 @@ import Controllers.BloodDonator.GetCardController;
 import Controllers.DonationsHistory.FirstScreeningController;
 import Controllers.DonationsHistory.GetExamsController;
 import Controllers.DonationsHistory.SecondScreeningController;
+import Controllers.Schedules.ChangeScheduleStatusController;
 import Controllers.Schedules.CreateNewScheduleController;
 import Controllers.Schedules.FindScheduleUseCaseController;
 import Model.Entities.Admin;
@@ -78,11 +79,6 @@ public class AppSimulator {
                 request = new Request(adminFormData, null);
 
                 response = LoginController.handle(request);
-
-                if (response.getStatus() == 200) {
-                    ctx = Context.ADMIN;
-                }
-
                 break;
             case 3: // first donation
                 String[] firstDontationFormdData = IOHelper.getStringArray(new String[] {
@@ -106,11 +102,9 @@ public class AppSimulator {
         Response response = new Response(0, null, null, null);
         Request request;
         String rg;
-        System.out.println("choose: " + choose);
 
         switch(choose) {
             case 1: // create profile
-                System.out.println("um");
                 String[] createProfileFormData = IOHelper.getStringArray(new String[] {
                     "Digite seu nome", "Digite seu cpf", "Digite seu email",
                     "Digite seu Rg", "Digite sua data de nascimento",
@@ -124,7 +118,6 @@ public class AppSimulator {
                 response = CreateDonatorController.handle(request);
                 break;
             case 2: // exams
-                System.out.println("dois");
                 rg = Token.GetID(token);
 
                 if (rg.equals(null)) {
@@ -137,7 +130,6 @@ public class AppSimulator {
                 response = GetExamsController.handle(request);
                 break;
             case 3: // carteirinha
-                System.out.println("tres");
                 rg = Token.GetID(token);
 
                 if (rg.equals(null)) {
@@ -165,7 +157,7 @@ public class AppSimulator {
                 return;
             default:
                 IOHelper.printError("Opção inválida");
-                break;
+                return;
         }
         
         handleResponse(response);
@@ -175,14 +167,21 @@ public class AppSimulator {
         int choose = IOHelper.adminMenu();
         Response response = new Response(200, BLUE_BOLD, BLACK_BOLD, ANSI_RESET);
         Request request;
+        String rg;
 
         switch(choose) {
             case 1: // modify schedule
+                System.out.print(WHITE_BOLD + "Digite o RG: "+ANSI_RESET);
+                rg = IOHelper.getLine();
+
+                request = new Request(new String[] {rg}, token);
+
+                response = ChangeScheduleStatusController.handle(request);
                 break;
             case 2:
-                String rg;
-                System.out.print("Digite o RG: ");
+                System.out.print(WHITE_BOLD + "Digite o RG: "+ANSI_RESET);
                 rg = IOHelper.getLine();
+                
 
                 // First
                 String answers = IOHelper.generateStringWithResponseInRange(new String[] {
@@ -207,6 +206,7 @@ public class AppSimulator {
                     "Recebeu transfução de sangue no último ano?",
                     "Tem mal de Parkinson?"
                 }, 0, 1);
+
 
                 Request firstRequest = new Request(new String[] {rg, answers}, token);
 
@@ -262,6 +262,9 @@ public class AppSimulator {
                 }, token);
                 response = SecondScreeningController.handle(request);
                 break;
+            case 3:
+                ctx = Context.GUEST;
+                return;
             default:
                 System.out.println("Opção inválida");
                 return;
