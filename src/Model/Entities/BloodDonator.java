@@ -9,8 +9,6 @@ public class BloodDonator extends Person {
     private int gender;
     private String bloodType;
     private String address;
-    private boolean registred;
-    private int donationStep;
     private int donationsCounter;
     private LocalDate lastExam;
 
@@ -29,10 +27,8 @@ public class BloodDonator extends Person {
         this.dateOfBirth = dateOfBirth;
         this.age = geraIdade(dateOfBirth);
         this.gender = gender;
-        this.registred = false;
         this.bloodType = bloodType;
         this.address = address;
-        this.donationStep = 0;
         this.donationsCounter = 0;
     }
     private static int geraIdade(final LocalDate aniversario) {
@@ -63,9 +59,6 @@ public class BloodDonator extends Person {
     public String getAddress() {
         return address;
     }
-    public boolean isRegistred() {
-        return registred;
-    }
     public void setAdress(String address) {
         this.address = address;
     }
@@ -75,18 +68,11 @@ public class BloodDonator extends Person {
     public void setLastExam(LocalDate lastExam) {
         this.lastExam = lastExam;
     }
-    public int getDonationStep() {
-        return donationStep;
-    }
     public int getDonationsCounter() {
         return donationsCounter;
     }
     public String getRG(){
         return rg;
-    }
-    public void setRegistred(boolean registred) {
-        this.registred = registred;
-        this.donationStep = 1;
     }
     public boolean equals(BloodDonator bloodDonator) {
         return this.rg.equals(bloodDonator.getRG());
