@@ -6,12 +6,12 @@ import Model.Repositories.AdminsRepository;
 // Login as Admin
 
 public class LoginUseCase {
-    public static boolean login(String email, String password) {
+    public static String login(String email, String password) {
         Admin admin = AdminsRepository.getAdminByEmail(email);
 
-        if (admin != null) {
-            return admin.comparePassword(password);
+        if (admin != null && admin.comparePassword(password)) {
+            return admin.getId();
         }
-        return false;
+        return null;
     }
 }

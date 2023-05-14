@@ -6,6 +6,7 @@ import Model.Entities.Schedule;
 import UseCases.Schedules.FindScheduleUseCase;
 import WebFake.Request;
 import WebFake.Response;
+import WebFake.Token;
 
 public class FindScheduleUseCaseController {
     public static Response handle(Request request) {
@@ -30,9 +31,10 @@ public class FindScheduleUseCaseController {
             Schedule schedule = FindScheduleUseCase.execute(payload[0], dateOfBirth);
 
             if (schedule != null) {
-                return new Response(200, "Agendamento encontrado", null, schedule);
+                String token = Token.CreateToken("DONATOR", payload[0]);
+                return new Response(200, "Agendamento encontrado", token, schedule);
             } else {
-                return new Response(400, "Agendamento não encontrado", null, null);
+                return new Response(404, "Agendamento não encontrado", null, null);
             }
         } catch (Error err) {
             return new Response(500, "Erro desconhecido", null, null);

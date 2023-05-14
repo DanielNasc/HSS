@@ -10,6 +10,7 @@ import Model.Entities.Admin;
 import Model.Repositories.AdminsRepository;
 import WebFake.Request;
 import WebFake.Response;
+import WebFake.Token;
 
 enum Context {
     GUEST, DONATOR, ADMIN
@@ -17,7 +18,8 @@ enum Context {
 
 public class AppSimulator {
     // private static String token = null;
-    private static Context ctx = Context.DONATOR;
+    private static Context ctx = Context.GUEST;
+    private static String token;
 
     public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
     public static final String RED_BOLD = "\033[1;31m";    // RED
@@ -94,7 +96,7 @@ public class AppSimulator {
                 return;
         }
 
-        IOHelper.handleResponse(response);
+        handleResponse(response);
     }
 
     public static void donatorContext() {
@@ -117,6 +119,7 @@ public class AppSimulator {
                 response = CreateDonatorController.handle(request);
                 break;
             case 2: // exams
+                
             case 3: // carteirinha
             case 4: // agendamento
             case 5: // logout
@@ -127,7 +130,7 @@ public class AppSimulator {
             break;
         }
         
-        IOHelper.handleResponse(response);
+        handleResponse(response);
     }
 
     public static void adminContext() {
@@ -167,11 +170,11 @@ public class AppSimulator {
                     "Tem mal de Parkinson?"
                 }, 0, 1);
 
-                Request firstRequest = new Request(new String[] {rg, answers}, null);
+                Request firstRequest = new Request(new String[] {rg, answers}, token);
 
                 Response firstResponse = FirstScreeningController.handle(firstRequest);
 
-                IOHelper.handleResponse(firstResponse);
+                handleResponse(firstResponse);
                 if (firstResponse.getStatus() != 200) {
                     return;
                 }
@@ -218,7 +221,7 @@ public class AppSimulator {
 
                 request = new Request(new String[] {
                     rg, IQ, hypertense
-                }, null);
+                }, token);
                 response = SecondScreeningController.handle(request);
                 System.out.println(response.getMessage());
                 break;
@@ -227,6 +230,22 @@ public class AppSimulator {
                 return;
         }
 
-        IOHelper.handleResponse(response);
+        handleResponse(response);
+    }
+
+    public static void handleResponse(Response response) {
+        if (response.getToken() != null) {
+            token = response.getToken();
+            System.out.println(token);
+            String type = Token.GetType(token);
+
+            if (type == "ADM") {
+                ctx = Context.ADMIN;
+            } else if (type == "DONATOR") {
+                ctx = Context.DONATOR;
+            }
+        }
+
+        IOHelper.printResponse(response);
     }
 }

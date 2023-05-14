@@ -90,9 +90,9 @@ public class IOHelper {
         try {
             int number = Integer.parseInt(getLine());
             if (number < a || number > b)
-                throw new Error("Invalid number");
+                throw new Exception("Invalid number");
             return number;
-        } catch (Error err) {
+        } catch (Exception err) {
             System.out.println("Digite um número no intervalo [ "+ a + ", " + b + " ]");
             return getNumberInRange(a, b);
         }
@@ -106,14 +106,14 @@ public class IOHelper {
         String answers = "";
 
         for (String prompt: prompts) {
-            System.out.println(prompt);
+            System.out.print(prompt + " ");
             answers += getNumberInRange(a, b);
         }
 
         return answers;
     }
 
-    public static void handleResponse(Response response) {
+    public static void printResponse(Response response) {
         System.out.println();
         if (response.getStatus() >= 400) {
             System.out.println(RED_BOLD + "STATUS: " + response.getStatus());

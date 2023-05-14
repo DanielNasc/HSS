@@ -1,9 +1,9 @@
 package Controllers.Admins;
 
 import UseCases.Admins.LoginUseCase;
-import Utils.RandomUtils;
 import WebFake.Request;
 import WebFake.Response;
+import WebFake.Token;
 
 public class LoginController {
     public static Response handle(Request request) {
@@ -14,10 +14,10 @@ public class LoginController {
         }
 
         try {
-            boolean loginResult = LoginUseCase.login(payload[0], payload[1]);
+            String loginResult = LoginUseCase.login(payload[0], payload[1]);
 
-            if (loginResult) {
-                String token = RandomUtils.generateId(15);
+            if (loginResult != null) {
+                String token = Token.CreateToken("ADM", loginResult);
                 return new Response(200, "Login bem sucedido", token, null);
             } else {
                 return new Response(400, "Dados de login inválidos", null, null);

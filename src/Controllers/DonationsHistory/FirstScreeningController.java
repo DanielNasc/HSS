@@ -1,11 +1,19 @@
 package Controllers.DonationsHistory;
 
+import Model.Repositories.AdminsRepository;
 import UseCases.DonationsHistory.FirstScreeningUseCase;
 import WebFake.Request;
 import WebFake.Response;
+import WebFake.Token;
 
 public class FirstScreeningController {
     public static Response handle(Request request) {
+        String[] tokenData = Token.BreakToken(request.getToken());
+
+        if (tokenData == null || tokenData[0] != "ADM" || AdminsRepository.getById(tokenData[1]) == null) {
+            return new Response(403, "Operação não permitida", null, null);
+        }
+
         String[] payload = request.getPayload();
         boolean[] clinicalScreeningOffsideQuestions = new boolean[payload[1].length()];
 
