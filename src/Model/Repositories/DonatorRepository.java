@@ -75,4 +75,8 @@ public class DonatorRepository {
     public static int numberOfDonators() {
         return donators.size();
     }
+
+    public static void clear() {
+        donators.clear();
+    }
 }

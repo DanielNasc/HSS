@@ -15,7 +15,8 @@ public class TestDonator {
         LocalDate.of(1999, 07, 05),
         0,
         "O+",
-        "Rua 1"
+        "Rua 1",
+        "10987654321"
     );
 
     @Test
@@ -27,6 +28,7 @@ public class TestDonator {
         assert(luannBloodDonator.getGender() == 0);
         assert(luannBloodDonator.getBloodType().equals("O+"));
         assert(luannBloodDonator.getAddress().equals("Rua 1"));
+        assert(luannBloodDonator.getRG().equals("10987654321"));
     }
 
     @Test

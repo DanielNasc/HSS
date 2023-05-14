@@ -7,44 +7,43 @@ import static org.junit.Assert.assertEquals;
 
 
 public class TestAdminsRep{
-    AdminsRepository adminsRep = new AdminsRepository();
     Admin adminTester = new Admin("Daniel", "15948726301", "Daniel@gmial", "6zG4FgEz");
     Admin adminTester2 = new Admin("Dariel", "1346192857", "Dariel@gmail", "S4Fa5pLs");
 
     @Test
     public void testAdd() {
-        adminsRep.add(adminTester);
+        AdminsRepository.add(adminTester);
         String id = adminTester.getId();
-        assertEquals(adminTester, adminsRep.getById(id));
-        adminsRep.removeAll();
+        assertEquals(adminTester, AdminsRepository.getById(id));
+        AdminsRepository.removeAll();
     }
     @Test
     public void testGetAll() {
-        adminsRep.add(adminTester);
-        adminsRep.add(adminTester2);
-        assertEquals(adminsRep.getAll().size(), 2);
-        adminsRep.removeAll();
+        AdminsRepository.add(adminTester);
+        AdminsRepository.add(adminTester2);
+        assertEquals(AdminsRepository.getAll().size(), 2);
+        AdminsRepository.removeAll();
     }
     @Test
     public void testGetById() {
-        adminsRep.add(adminTester);
+        AdminsRepository.add(adminTester);
         String id = adminTester.getId();
-        assertEquals(adminTester, adminsRep.getById(id));
-        adminsRep.removeAll();
+        assertEquals(adminTester, AdminsRepository.getById(id));
+        AdminsRepository.removeAll();
     }
     @Test
     public void testGetAdminByEmail() {
-        adminsRep.add(adminTester);
-        assertEquals(adminTester, adminsRep.getAdminByEmail("Daniel@gmial"));
-        adminsRep.removeAll();
+        AdminsRepository.add(adminTester);
+        assertEquals(adminTester, AdminsRepository.getAdminByEmail("Daniel@gmial"));
+        AdminsRepository.removeAll();
     }
     @Test
     public void testRemoveById() {
-        adminsRep.add(adminTester);
-        adminsRep.add(adminTester2);
-        adminsRep.removeById(adminTester.getId());
-        assertEquals(adminsRep.getAll().size(), 1);
-        adminsRep.removeAll();
+        AdminsRepository.add(adminTester);
+        AdminsRepository.add(adminTester2);
+        AdminsRepository.removeById(adminTester.getId());
+        assertEquals(AdminsRepository.getAll().size(), 1);
+        AdminsRepository.removeAll();
     }
     
 }

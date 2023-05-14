@@ -11,7 +11,6 @@ import org.junit.Test;
 
 public class TestSchedulesRep{
     //create a new SchedulesRepository object
-    private static SchedulesRepository repository = new SchedulesRepository();
     //create a new Schedule object
     private static Schedule firstSchedule = new Schedule(
         "12345678910", LocalDate.of(1983, 8, 7));
@@ -21,46 +20,47 @@ public class TestSchedulesRep{
     
     //add
     @Test
-    public static void testAdd() {
-        repository.add(firstSchedule);
-        repository.add(secondSchedule);
-        assert(repository.getAll().contains(firstSchedule));
-        assert(repository.getAll().contains(secondSchedule));
-        repository.clearRepository();
+    public void testAdd() {
+        SchedulesRepository.add(firstSchedule);
+        SchedulesRepository.add(secondSchedule);
+        assert(SchedulesRepository.getAll().contains(firstSchedule));
+        assert(SchedulesRepository.getAll().contains(secondSchedule));
+        SchedulesRepository.clearRepository();
     }
     //getById
     @Test
-    public static void testGetById() {
-        repository.add(firstSchedule);
-        repository.add(secondSchedule);
-        assertEquals(firstSchedule, repository.getById(firstSchedule.getId()));
-        repository.clearRepository();
+    public void testGetById() {
+        SchedulesRepository.add(firstSchedule);
+        SchedulesRepository.add(secondSchedule);
+        assertEquals(firstSchedule, SchedulesRepository.getById(firstSchedule.getId()));
+        SchedulesRepository.clearRepository();
     }
     //getByRg
     @Test
-    public static void testGetByRg() {
-        repository.add(firstSchedule);
-        repository.add(secondSchedule);
-        repository.clearRepository();
+    public void testGetByRg() {
+        SchedulesRepository.add(firstSchedule);
+        SchedulesRepository.add(secondSchedule);
+        SchedulesRepository.clearRepository();
         }
 
     //removeById
     @Test
-    public static void testRemoveById() {
-        repository.add(firstSchedule);
-        repository.add(secondSchedule);
-        repository.removeById(firstSchedule.getId());
-        assert(!repository.getAll().contains(firstSchedule));
-        assert(repository.getAll().contains(secondSchedule));
-        repository.clearRepository();
+    public void testRemoveById() {
+        SchedulesRepository.add(firstSchedule);
+        SchedulesRepository.add(secondSchedule);
+        SchedulesRepository.removeById(firstSchedule.getId());
+        assert(!SchedulesRepository.getAll().contains(firstSchedule));
+        assert(SchedulesRepository.getAll().contains(secondSchedule));
+        SchedulesRepository.clearRepository();
     }
     //removeByRg
     @Test
-    public static void testRemoveByRg() {
-        repository.add(firstSchedule);
-        repository.add(secondSchedule);
-        assertEquals(true, repository.removeByRg(firstSchedule.getRg()));
-        assert(!repository.getAll().contains(firstSchedule));
-        assert(repository.getAll().contains(secondSchedule));
+    public void testRemoveByRg() {
+        SchedulesRepository.add(firstSchedule);
+        SchedulesRepository.add(secondSchedule);
+        assertEquals(true, SchedulesRepository.removeByRg(firstSchedule.getRg()));
+        assert(!SchedulesRepository.getAll().contains(firstSchedule));
+        assert(SchedulesRepository.getAll().contains(secondSchedule));
+        SchedulesRepository.clearRepository();
     }
 }

@@ -17,7 +17,8 @@ public class TestDonatorRep {
         LocalDate.of(1999, 07, 05),
         0,
         "O+",
-        "Rua 1"
+        "Rua 1",
+        "10987654321"
     );
     //create another new BloodDonator object
     BloodDonator lumaBloodDonator = new BloodDonator(
@@ -27,60 +28,60 @@ public class TestDonatorRep {
         LocalDate.of(1999, 07, 05),
         0,
         "O-",
-        "Rua 3"
+        "Rua 3",
+        "10987654321"
     );
-    //create a new DonatorRepository object
-    DonatorRepository primaryDonatorRepository = new DonatorRepository();
-    DonatorRepository secondaryDonatorRepository = new DonatorRepository();
-
 
     @Test
     public void testAddDonator() {
         //add the BloodDonator object to the DonatorRepository
-        primaryDonatorRepository.addDonator(luannBloodDonator);
-        primaryDonatorRepository.addDonator(luannBloodDonator);
-        primaryDonatorRepository.addDonator(lumaBloodDonator);
+        DonatorRepository.addDonator(luannBloodDonator);
+        DonatorRepository.addDonator(lumaBloodDonator);
         //check if the BloodDonator object was added to the DonatorRepository
-        assertEquals(2, primaryDonatorRepository.numberOfDonators());
+        assertEquals(2, DonatorRepository.numberOfDonators());
+        DonatorRepository.clear();
     }
 
     @Test
     public void testCheckDonator() {
         //add the BloodDonator object to the DonatorRepository
-        primaryDonatorRepository.addDonator(luannBloodDonator);
+        DonatorRepository.addDonator(luannBloodDonator);
         //check if the BloodDonator object was added to the DonatorRepository
-        assertEquals(true, primaryDonatorRepository.checkDonator("12345678910"));
-        
+        assertEquals(true, DonatorRepository.checkDonator("12345678910"));
+        DonatorRepository.clear();
     }
     @Test
     public void testGetAll() {
         //add the BloodDonator object to the DonatorRepository
-        primaryDonatorRepository.addDonator(luannBloodDonator);
-        primaryDonatorRepository.addDonator(lumaBloodDonator);
+        DonatorRepository.addDonator(luannBloodDonator);
+        DonatorRepository.addDonator(lumaBloodDonator);
         
-        secondaryDonatorRepository.getAll();
+        DonatorRepository.getAll();
 
         //check if the BloodDonator object was added to the DonatorRepository
-        assertEquals(2  , secondaryDonatorRepository.numberOfDonators());    
+        assertEquals(2  , DonatorRepository.numberOfDonators());    
+        DonatorRepository.clear();
     }
     @Test
     public void testGetByCPF() {
         //add the BloodDonator object to the DonatorRepository
-        primaryDonatorRepository.addDonator(luannBloodDonator);
-        primaryDonatorRepository.addDonator(lumaBloodDonator);
+        DonatorRepository.addDonator(luannBloodDonator);
+        DonatorRepository.addDonator(lumaBloodDonator);
         //check if the BloodDonator object was added to the DonatorRepository
-        assertEquals(luannBloodDonator, primaryDonatorRepository.getByCPF("12345678910"));
+        assertEquals(luannBloodDonator, DonatorRepository.getByCPF("12345678910"));
+        DonatorRepository.clear();
     }
     @Test
     public void testRemoveByCPF() {
         //add the BloodDonator object to the DonatorRepository
-        primaryDonatorRepository.addDonator(luannBloodDonator);
-        primaryDonatorRepository.addDonator(lumaBloodDonator);
+        DonatorRepository.addDonator(luannBloodDonator);
+        DonatorRepository.addDonator(lumaBloodDonator);
         //check if the BloodDonator object was added to the DonatorRepository
-        assertEquals(2, primaryDonatorRepository.numberOfDonators());
+        assertEquals(2, DonatorRepository.numberOfDonators());
         //remove the BloodDonator object from the DonatorRepository
-        primaryDonatorRepository.removeByCPF("12345678910");
+        DonatorRepository.removeByCPF("12345678910");
         //check if the BloodDonator object was removed from the DonatorRepository
-        assertEquals(1, primaryDonatorRepository.numberOfDonators());
+        assertEquals(1, DonatorRepository.numberOfDonators());
+        DonatorRepository.clear();
     }
 }
