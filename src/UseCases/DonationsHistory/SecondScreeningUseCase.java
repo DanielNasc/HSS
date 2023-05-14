@@ -70,5 +70,7 @@ public class SecondScreeningUseCase {
         DonationHistoryRepository.add(donation);
 
         SchedulesRepository.updateSchedule(rg, ScheduleStatus.SUCESS);
+
+        donator.addDonation();
     }
 }
