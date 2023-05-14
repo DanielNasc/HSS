@@ -3,6 +3,7 @@ package Model.Entities;
 import java.time.LocalDate;
 
 public class BloodDonator extends Person {
+    private String rg;
     private LocalDate dateOfBirth;
     private int age;
     private int gender;
@@ -19,9 +20,11 @@ public class BloodDonator extends Person {
             LocalDate dateOfBirth,
             int gender,
             String bloodType,
-            String address
+            String address,
+            String rg
         ) {
         super(name, cpf, email);
+        this.rg = rg;
         this.dateOfBirth = dateOfBirth;
         this.age = geraIdade(dateOfBirth);
         this.gender = gender;
@@ -71,8 +74,14 @@ public class BloodDonator extends Person {
     public int getDonationsCounter() {
         return donationsCounter;
     }
+    public String getRG(){
+        return rg;
+    }
     public void setRegistred(boolean registred) {
         this.registred = registred;
         this.donationStep = 1;
+    }
+    public boolean equals(BloodDonator bloodDonator) {
+        return this.rg.equals(bloodDonator.getRG());
     }
 }

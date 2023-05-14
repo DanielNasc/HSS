@@ -12,8 +12,7 @@ public class DonatorRepository {
     }
     public static void addDonator(BloodDonator donator) {
         if (checkDonator(donator.getCpf())) {
-            System.out.println("Doador já cadastrado");
-            return;
+            throw new Error("Doador já cadastrado");
         }
         donators.add(donator);
     }
