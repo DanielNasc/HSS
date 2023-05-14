@@ -3,6 +3,7 @@ package App;
 import Controllers.Admins.LoginController;
 import Controllers.BloodDonator.CreateDonatorController;
 import Controllers.DonationsHistory.FirstScreeningController;
+import Controllers.DonationsHistory.GetExamsController;
 import Controllers.DonationsHistory.SecondScreeningController;
 import Controllers.Schedules.CreateNewScheduleController;
 import Controllers.Schedules.FindScheduleUseCaseController;
@@ -119,7 +120,16 @@ public class AppSimulator {
                 response = CreateDonatorController.handle(request);
                 break;
             case 2: // exams
+                String rg = Token.GetID(token);
+
+                if (rg == null) {
+                    ctx = Context.GUEST;
+                    break;
+                }
                 
+                request = new Request(new String[] {rg}, token);
+
+                response = GetExamsController.handle(request);
             case 3: // carteirinha
             case 4: // agendamento
             case 5: // logout
