@@ -12,6 +12,14 @@ public class Token {
     }
 
     public static String GetType(String token) {
-        return BreakToken(token)[0];
+        String[] s = BreakToken(token);
+        if (s == null || s.length < 1) return null;
+        return s[0];
+    }
+
+    public static String GetID(String token) {
+        String[] s = BreakToken(token);
+        if (s == null || s.length < 2) return null;
+        return s[1];
     }
 }

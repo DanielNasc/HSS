@@ -29,14 +29,16 @@ public class DonationHistoryRepository {
         return null;
     }
 
-    public static DonationRegistry getByDonatorId(String donatorId) {
+    public static ArrayList<DonationRegistry> getByDonatorId(String donatorId) {
+        ArrayList<DonationRegistry> registries = new ArrayList<DonationRegistry>();
+
         for (DonationRegistry donationRegistry: donationsHistory) {
             if (donationRegistry.getdonatorID().equals(donatorId)) {
-                return donationRegistry;
+                registries.add(donationRegistry);
             }
         }
 
-        return null;
+        return registries;
     }
 
     public static void deleteByID(String id) {

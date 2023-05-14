@@ -12,6 +12,7 @@ public class BloodDonator extends Person {
     private boolean registred;
     private int donationStep;
     private int donationsCounter;
+    private LocalDate lastExam;
 
     public BloodDonator(
             String name,
@@ -67,6 +68,12 @@ public class BloodDonator extends Person {
     }
     public void setAdress(String address) {
         this.address = address;
+    }
+    public LocalDate getLastExam() {
+        return lastExam;
+    }
+    public void setLastExam(LocalDate lastExam) {
+        this.lastExam = lastExam;
     }
     public int getDonationStep() {
         return donationStep;

@@ -1,4 +1,5 @@
 package Model.Repositories;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +61,16 @@ public class DonatorRepository {
             }
         }
     }
+
+    public static void updateLastExam(String rg, LocalDate newDate) {
+        for (BloodDonator donator: donators) {
+            if (donator.getRG().equals(rg)) {
+                donator.setLastExam(newDate);
+                break;
+            }
+        }
+    }
+
     public static int numberOfDonators() {
         return donators.size();
     }

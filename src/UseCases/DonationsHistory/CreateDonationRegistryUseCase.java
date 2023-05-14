@@ -2,6 +2,7 @@ package UseCases.DonationsHistory;
 
 import Model.Entities.DonationRegistry;
 import Model.Repositories.DonationHistoryRepository;
+import Model.Repositories.DonatorRepository;
 
 public class CreateDonationRegistryUseCase {
     public void execute(
@@ -26,5 +27,7 @@ public class CreateDonationRegistryUseCase {
         );
         
         DonationHistoryRepository.add(newDonation);
+
+        DonatorRepository.updateLastExam(donatorID, newDonation.getDate());
     }
 }
