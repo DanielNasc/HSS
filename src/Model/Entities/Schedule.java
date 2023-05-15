@@ -56,6 +56,6 @@ public class Schedule {
     }
 
     public String toString() {
-        return "ID: " + this.id + "\nRG: " + this.rg + "\nData de nascimento: " + this.dateOfBirth + "\nData da doação: " + this.date;
+        return "ID: " + this.id + "\nRG: " + this.rg + "\nData de nascimento: " + this.dateOfBirth + "\nData da doação: " + this.date + "\nStatus: " + status;
     }
 }

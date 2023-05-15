@@ -60,7 +60,7 @@ public class SchedulesRepository {
     public static Schedule findOne(String rg, LocalDate dateOfBirth) {
         for (Schedule schedule : schedules) {
             if (schedule.getRg().equals(rg)) { // if rg is equal
-                if (schedule.getDateOfBirth().equals(dateOfBirth) && schedule.getStatus().equals(ScheduleStatus.WAITING_DATE)) { // and date of birth is equal
+                if (schedule.getDateOfBirth().equals(dateOfBirth)) { // and date of birth is equal  add: && schedule.getStatus().equals(ScheduleStatus.WAITING_DATE)
                     return schedule;
                 }
                 
