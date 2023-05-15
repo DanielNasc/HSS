@@ -43,9 +43,9 @@ public class SecondScreeningUseCase {
             clinicalScreening.getBodyTemperature() > 37 ||
             (clinicalScreening.getHemoglobin() < 13 && donator.getGender() == 0) ||
             (clinicalScreening.getHemoglobin() < 12.5 && donator.getGender() == 1) ||
-            (clinicalScreening.getBloodPressure()[0] > 90 && clinicalScreening.getBloodPressure()[1] < 60) ||
-            (clinicalScreening.getBloodPressure()[0] > 140 && clinicalScreening.getBloodPressure()[1] > 90 && hypertensive == false) ||
-            (clinicalScreening.getBloodPressure()[0] > 180 && clinicalScreening.getBloodPressure()[1] > 100 && hypertensive == true) ||
+            (clinicalScreening.getBloodPressure()[0] < 90 || clinicalScreening.getBloodPressure()[1] < 60) ||
+            ((clinicalScreening.getBloodPressure()[0] > 140 || clinicalScreening.getBloodPressure()[1] > 90) && hypertensive == false) ||
+            ((clinicalScreening.getBloodPressure()[0] > 180 || clinicalScreening.getBloodPressure()[1] > 100) && hypertensive == true) ||
             clinicalScreening.getWeight() < 50 ||
             clinicalScreening.getHeartBeats() < 60 || clinicalScreening.getHeartBeats() > 100 ||
             clinicalScreening.getIMC() < 18.5 ||
