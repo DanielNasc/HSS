@@ -40,13 +40,13 @@ public class SecondScreeningUseCase {
         // Peso abaixo de 50 kg
         // Idade fora do intervalo entre 18 - 69 anos
         if (
-            clinicalScreening.getBodyTemperature() > 37 ||
-            (clinicalScreening.getHemoglobin() < 13 && donator.getGender() == 0) ||
+            clinicalScreening.getBodyTemperature() > 37.0 ||
+            (clinicalScreening.getHemoglobin() < 13.0 && donator.getGender() == 0) ||
             (clinicalScreening.getHemoglobin() < 12.5 && donator.getGender() == 1) ||
-            (clinicalScreening.getBloodPressure()[0] < 90 || clinicalScreening.getBloodPressure()[1] < 60) ||
-            ((clinicalScreening.getBloodPressure()[0] > 140 || clinicalScreening.getBloodPressure()[1] > 90) && hypertensive == false) ||
-            ((clinicalScreening.getBloodPressure()[0] > 180 || clinicalScreening.getBloodPressure()[1] > 100) && hypertensive == true) ||
-            clinicalScreening.getWeight() < 50 ||
+            (clinicalScreening.getBloodPressure()[0] < 90 && clinicalScreening.getBloodPressure()[1] < 60) ||
+            ((clinicalScreening.getBloodPressure()[0] > 140 && clinicalScreening.getBloodPressure()[1] > 90)) ||
+            ((clinicalScreening.getBloodPressure()[0] > 180 && clinicalScreening.getBloodPressure()[1] > 100)) ||
+            clinicalScreening.getWeight() < 50.0 ||
             clinicalScreening.getHeartBeats() < 60 || clinicalScreening.getHeartBeats() > 100 ||
             clinicalScreening.getIMC() < 18.5 ||
             donator.getAge() < 18 || donator.getAge() > 69

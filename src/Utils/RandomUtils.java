@@ -55,8 +55,8 @@ public class RandomUtils {
 
         switch(status) {
             case 1: // Baixa
-                systolic = random.nextInt(125 - 85) + 85;
-                diastolic = random.nextInt(79 - 55) + 55;
+                systolic = random.nextInt(125 - 88) + 88;
+                diastolic = random.nextInt(79 - 58) + 58;
                 break;
             case 2: // Normal
                 if(age >= 18 && age < 30) {
@@ -143,7 +143,7 @@ public class RandomUtils {
                 }
                 break;
         }
-        // System.out.println("Pressão Arterial:" + systolic + "mmHg/" + diastolic + "mmHg");
+        System.out.println("Pressão Arterial:" + systolic + "mmHg/" + diastolic + "mmHg");
         return new int[] {systolic, diastolic};
     }
 
@@ -179,16 +179,16 @@ public class RandomUtils {
         
         switch(status) {
             case 1:
-                pulse = random.nextInt(72 - 50) + 50;
+                pulse = random.nextInt(72 - 58) + 58;
                 break;
             case 2:
                 pulse = random.nextInt(100 - 60) + 60;
                 break;
             case 3:
-                pulse = random.nextInt(110 - 78) + 78;
+                pulse = random.nextInt(102 - 78) + 78;
                 break;
         }
-
+        System.out.println("Batimentos: " + pulse);
         return pulse;
     }
 
@@ -202,7 +202,10 @@ public class RandomUtils {
     // Intervalo randômico: 35,5 a 38
 
     public static double generateBodyTemperature() {
-        return random.nextDouble() * (38.0 - 35.5) + 35.5;
+        double temp = 0.0;
+        temp = random.nextDouble() * (37.05 - 36.5) + 36.5;
+        System.out.println("Temperatura: " + temp);
+        return temp;
     }
 
     // AFERIR DOSAGEM DE HEMOGLOBINA
@@ -221,20 +224,21 @@ public class RandomUtils {
         double hemoglobin = 0.0;
         if(hemoglobinInfluence) {
             if(gender == 1) { //woman
-                hemoglobin = random.nextDouble() * (14.5 - 11.5) + 11.5;
+                hemoglobin = random.nextDouble() * (14.5 - 12.0) + 12.0;
             }
             else { //man
-                hemoglobin = random.nextDouble() * (15.0 - 12.0) + 12.5;
+                hemoglobin = random.nextDouble() * (15.0 - 12.5) + 12.5;
             }
         }
         else {
             if(gender == 1) { //woman
-                hemoglobin = random.nextDouble() * (18.0 - 12.0) + 11.5;
+                hemoglobin = random.nextDouble() * (18.0 - 12.5) + 12.5;
             }
             else { //man
-                hemoglobin = random.nextDouble() * (19.0 - 12.5) + 12.5;
+                hemoglobin = random.nextDouble() * (19.0 - 13.0) + 13.0;
             }
         }
+        System.out.println("Hemoglobina: " + hemoglobin);
         return hemoglobin;
     }
 
@@ -308,6 +312,7 @@ public class RandomUtils {
                 }
                 break; 
         }
+        System.out.println("Altura: " + height);
         return height;
     }
     // status
@@ -345,6 +350,7 @@ public class RandomUtils {
                 }
                 break; 
         }
+        System.out.println("Peso: " + weight);
         return weight;
     }
 
