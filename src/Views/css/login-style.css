@@ -1,0 +1,71 @@
+body,html{
+    height: 100%; 
+    overflow: hidden;
+    background-image: url(https://static.vecteezy.com/system/resources/previews/004/466/267/non_2x/red-and-white-background-design-flat-and-minimalist-background-design-illustration-vector.jpg);
+    background-size: cover;
+    position: relative;
+  }
+  
+  .l-form{
+    background-color:rgba(39, 41, 45, 0.3);
+    border-radius:8px;
+    padding: 12px;
+  }
+  
+  .i-form{
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+
+  .j-form{
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 6px;
+  }
+
+  .text-form{
+    padding: 4px;
+  }
+  #Star-Logo{
+    max-width: 50px;
+    width: auto;
+    height: auto;
+  }
+  .perfil-form{
+    background-color:rgba(235, 17, 17, 0.8);
+  }
+  .buttons-form{
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+  }
+
+  #Logo-Perfil{
+    margin-bottom: 20px;
+    max-width: 110px;
+    width: auto;
+    height: auto;
+  }
+
+  #Logo-Hemoce{
+    opacity: 0.9;
+    margin-bottom: 20px;
+    max-width: 700px;
+    width: auto;
+    height: auto;
+  }
+  
+  #Lista_de_dados{
+    max-width: 1000px;
+    max-height: 550px;
+  }
+
+  /* Styles required only for the example above */
+.scrollspy-example {
+  align-items: center;
+  position: relative;
+  height: 430px;
+  overflow: auto;
+  padding: 10px;
+}
