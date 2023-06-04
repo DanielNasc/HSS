@@ -2,6 +2,7 @@ package Controllers.DonationsHistory;
 
 import java.util.ArrayList;
 
+import Errors.NotFoundDataException;
 import Model.Entities.DonationRegistry;
 import UseCases.DonationsHistory.GetExamsUseCase;
 import WebFake.Request;
@@ -17,12 +18,12 @@ public class GetExamsController {
 
         String rg = payload[0];
 
-        ArrayList<DonationRegistry> registries = GetExamsUseCase.execute(rg);
-
-        if (registries == null || registries.size() == 0) {
-            return new Response(404, "Não foi encontrado um exame para este RG", null, null);
+        try{
+            ArrayList<DonationRegistry> registries = GetExamsUseCase.execute(rg);
+            return new Response(200, "Exame encontrado", null, registries);
+        } catch (NotFoundDataException err) {
+            return new Response(404, err.getMessage(), null, null);
         }
 
-        return new Response(200, "Exame encontrado", null, registries);
     }
 }

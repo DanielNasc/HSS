@@ -1,5 +1,6 @@
 package Controllers.Schedules;
 
+import Errors.NotFoundDataException;
 import Model.Repositories.AdminsRepository;
 import UseCases.Schedules.ChangeScheduleStatusUseCase;
 import Utils.enums.ScheduleStatus;
@@ -21,12 +22,13 @@ public class ChangeScheduleStatusController {
             return new Response(400, "RG ausente", null, null);
         }
 
-        boolean result = ChangeScheduleStatusUseCase.execute(payload[0], ScheduleStatus.FAILED);
+        try {
+            ChangeScheduleStatusUseCase.execute(payload[0], ScheduleStatus.FAILED);
 
-        if (!result) {
-            return new Response(400, "Agendamento não encontrado", null, null);
+            return new Response(200, "Agendamento atualizado", null, null);
+        } catch (NotFoundDataException err) {
+            return new Response(404, err.getMessage(), null, null);
         }
 
-        return new Response(200, "Agendamento atualizado", null, null);
     }
 }
