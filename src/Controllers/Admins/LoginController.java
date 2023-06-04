@@ -1,30 +1,28 @@
 package Controllers.Admins;
 
-import Errors.NotFoundDataException;
+import Errors.GenericAppException;
 import UseCases.Admins.LoginUseCase;
+import Utils.RequestTypesChecker;
 import WebFake.Request;
 import WebFake.Response;
 import WebFake.Token;
 
 public class LoginController {
     public static Response handle(Request request) {
-        String[] payload = request.getPayload();
-
-        if (payload.length != 2) {
-            return new Response(400, "", null, null);
-        }
-
+        
         try {
+            String[] payload = request.getPayload();
+            String[] payloadTypes = {"string", "string"};
+
+            RequestTypesChecker checker = new RequestTypesChecker(payload, payloadTypes, 2);
+            checker.runChecks();
+
             String loginResult = LoginUseCase.login(payload[0], payload[1]);
 
-            if (loginResult != null) {
-                String token = Token.CreateToken("ADM", loginResult);
-                return new Response(200, "Login bem sucedido", token, null);
-            } else {
-                return new Response(400, "Dados de login inválidos", null, null);
-            }
-        } catch (NotFoundDataException err) {
-            return new Response(500, err.getMessage(), null, null);
+            String token = Token.CreateToken("ADM", loginResult);
+            return new Response(200, "Login bem sucedido", token, null);
+        } catch (GenericAppException err) {
+            return new Response(err.getStatus(), err.getMessage(), null, null);
         }
     }
 }

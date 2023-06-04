@@ -27,7 +27,7 @@ public class ChangeScheduleStatusController {
 
             return new Response(200, "Agendamento atualizado", null, null);
         } catch (NotFoundDataException err) {
-            return new Response(404, err.getMessage(), null, null);
+            return new Response(err.getStatus(), err.getMessage(), null, null);
         }
 
     }

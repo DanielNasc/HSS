@@ -2,9 +2,10 @@ package Controllers.Schedules;
 
 import java.time.LocalDate;
 
-import Errors.NotFoundDataException;
+import Errors.GenericAppException;
 import Model.Entities.Schedule;
 import UseCases.Schedules.FindScheduleUseCase;
+import Utils.RequestTypesChecker;
 import WebFake.Request;
 import WebFake.Response;
 import WebFake.Token;
@@ -15,25 +16,18 @@ public class FindScheduleUseCaseController {
 
         String[] payload = request.getPayload();
 
-        if (payload.length != 2 && rg == null) {
-            return new Response(400, "Formato de dados inválido", null, null);
-        }
-
-        LocalDate dateOfBirth = null;
-        
-        if (rg == null) {
-            try {
-                String[] date = payload[1].split("/");
-                int day = Integer.parseInt(date[0]);
-                int month = Integer.parseInt(date[1]);
-                int year = Integer.parseInt(date[2]);
-                dateOfBirth = LocalDate.of(year, month, day);
-            } catch(Exception err) {
-                return new Response(400, "Dada de nascimento inválida", null, null);
-            }
-        }
-
+        String[] payloadTypes = {"string", "date"};
+    
         try {
+            RequestTypesChecker checker = new RequestTypesChecker(payload, payloadTypes, 2);
+            checker.runChecks();
+
+            String[] date = payload[1].split("/");
+            int day = Integer.parseInt(date[0]);
+            int month = Integer.parseInt(date[1]);
+            int year = Integer.parseInt(date[2]);
+            LocalDate dateOfBirth = LocalDate.of(year, month, day);
+
             Schedule schedule = FindScheduleUseCase.execute(payload[0], dateOfBirth, rg != null);
 
             if (schedule != null) {
@@ -42,8 +36,8 @@ public class FindScheduleUseCaseController {
             } else {
                 return new Response(404, "Agendamento não encontrado, você criou um agendamento/conta?", null, null);
             }
-        } catch (NotFoundDataException err) {
-            return new Response(500, err.getMessage(), null, null);
+        } catch (GenericAppException err) {
+            return new Response(err.getStatus(), err.getMessage(), null, null);
         }
     }
 }

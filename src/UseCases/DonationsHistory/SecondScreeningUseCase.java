@@ -1,6 +1,9 @@
 package UseCases.DonationsHistory;
 
+import java.util.ArrayList;
+
 import Errors.NotFoundDataException;
+import Errors.ScreeningException;
 import Model.Entities.BloodDonator;
 import Model.Entities.DonationRegistry;
 import Model.Repositories.DonationHistoryRepository;
@@ -14,23 +17,23 @@ public class SecondScreeningUseCase {
         String rg,
         int[] clinicalScreeningInfluentialQuestions,
         boolean hypertensive
-    ) throws NotFoundDataException {
+    ) throws NotFoundDataException, ScreeningException {
         BloodDonator donator = DonatorRepository.getByRG(rg);
 
         if (donator == null) {
             throw new NotFoundDataException("Donator", "Doador com RG: " + rg + " não encontrado");
         }
 
-        ClinicalScreening clinicalScreening = new ClinicalScreening();
+        ClinicalScreening clinicalScreening = new ClinicalScreening(donator.getAge(), donator.getGender());
 
         clinicalScreening.checkClinicalScreeningInfluentialQuestions(clinicalScreeningInfluentialQuestions);
 
-        clinicalScreening.checkBloodPressure(donator.getAge(), donator.getGender());
+        clinicalScreening.checkBloodPressure();
         clinicalScreening.checkHeartBeats();
         clinicalScreening.checkBodyTemperature();
-        clinicalScreening.checkHemoglobin(donator.getGender());
-        clinicalScreening.checkHeight(donator.getGender());
-        clinicalScreening.checkWeight(donator.getGender());
+        clinicalScreening.checkHemoglobin();
+        clinicalScreening.checkHeight();
+        clinicalScreening.checkWeight();
         clinicalScreening.checkIMC();
 
         // Não pode doar a pessoa que apresentar hematócrito menor que 39% ( ou hemoglobina <13g/dL) no homem e 38% (ou hemoglobina <12,5g/dL) na mulher. 
@@ -40,21 +43,16 @@ public class SecondScreeningUseCase {
         // Com histórico de hiperte+nsão: >= 180 mmHg / 100mmHg
         // Peso abaixo de 50 kg
         // Idade fora do intervalo entre 18 - 69 anos
-        if (
-            clinicalScreening.getBodyTemperature() > 37.0 ||
-            (clinicalScreening.getHemoglobin() < 13.0 && donator.getGender() == 0) ||
-            (clinicalScreening.getHemoglobin() < 12.5 && donator.getGender() == 1) ||
-            (clinicalScreening.getBloodPressure()[0] < 90 && clinicalScreening.getBloodPressure()[1] < 60) ||
-            ((clinicalScreening.getBloodPressure()[0] > 140 && clinicalScreening.getBloodPressure()[1] > 90)) ||
-            ((clinicalScreening.getBloodPressure()[0] > 180 && clinicalScreening.getBloodPressure()[1] > 100)) ||
-            clinicalScreening.getWeight() < 50.0 ||
-            clinicalScreening.getHeartBeats() < 60 || clinicalScreening.getHeartBeats() > 100 ||
-            clinicalScreening.getIMC() < 18.5 ||
-            donator.getAge() < 18 || donator.getAge() > 69
-        ) {
+        clinicalScreening.checkResults();
+        ArrayList<String> failedTests = clinicalScreening.getFailedTests();
+        if (failedTests.size() > 0) {
             SchedulesRepository.updateSchedule(rg, ScheduleStatus.FAILED);
+            String failedTestsString = "";
+            for (String failedTest : failedTests) {
+                failedTestsString += failedTest + ", ";
+            }
 
-            throw new Error("Infelizmente, você não está apto(a) para doar.");
+            throw new ScreeningException(failedTestsString);
         }
     
         DonationRegistry donation = new DonationRegistry(
