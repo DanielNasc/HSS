@@ -2,8 +2,10 @@ package Controllers.BloodDonator;
 
 import java.time.LocalDate;
 
+import Errors.GenericAppException;
 import Errors.InvalidRequestException;
 import UseCases.Donator.CreateDonatorUseCase;
+import Utils.RequestTypesChecker;
 import WebFake.Request;
 import WebFake.Response;
 import WebFake.Token;
@@ -17,28 +19,26 @@ public class CreateDonatorController {
         }
 
         String[] payload = request.getPayload();
+        String[] payloadTypes = {"string", "string", "string", "string", "date", "int", "string", "string"};
 
         LocalDate dateOfBirth;
+        int gender;
+
         try {
+            RequestTypesChecker checker = new RequestTypesChecker(payload, payloadTypes, 8);
+            checker.runChecks();
+
             String[] date = payload[4].split("/");
             int day = Integer.parseInt(date[0]);
             int month = Integer.parseInt(date[1]);
             int year = Integer.parseInt(date[2]);
             dateOfBirth = LocalDate.of(year, month, day);
-        } catch(Exception err) {
-            return new Response(400, "Dada de nascimento inválida", null, null);
-        }
-        
-        int gender;
-        try {
+
             gender = Integer.parseInt(payload[5]);
             if (gender != 0 && gender != 1) 
                 throw new InvalidRequestException("gender: 1 ou 0");
-        } catch (InvalidRequestException err) {
-            return new Response(400, err.getMessage(), null, dateOfBirth);
-        }
 
-        try {
+
             CreateDonatorUseCase.execute(payload[0], 
                                             payload[1], 
                                             payload[2], 
@@ -47,7 +47,7 @@ public class CreateDonatorController {
                                             gender, 
                                             payload[6], 
                                             payload[7]);
-        } catch (Error err) {
+        } catch (GenericAppException err) {
             return new Response(400, "Dados inválidos", null, null);
         }
         
