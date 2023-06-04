@@ -1,6 +1,6 @@
 package Controllers.DonationsHistory;
 
-import Errors.NotFoundDataException;
+import Errors.GenericAppException;
 import Model.Repositories.AdminsRepository;
 import UseCases.DonationsHistory.SecondScreeningUseCase;
 import WebFake.Request;
@@ -26,7 +26,7 @@ public class SecondScreeningController {
 
         try {
             SecondScreeningUseCase.execute(payload[0], clinicalScreeningOffsideQuestions, hypertensive);
-        } catch(NotFoundDataException err) {
+        } catch(GenericAppException err) {
             return new Response(err.getStatus(), err.getMessage(), null, null);
         }
 
