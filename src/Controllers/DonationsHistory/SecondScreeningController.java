@@ -17,7 +17,7 @@ public class SecondScreeningController {
         }
 
         String[] payload = request.getPayload();
-        String[] payloadTypes = {"string", "string", "any"};
+        String[] payloadTypes = {"any", "any", "any"};
 
         try {
             RequestTypesChecker checker = new RequestTypesChecker(payload, payloadTypes, 3);

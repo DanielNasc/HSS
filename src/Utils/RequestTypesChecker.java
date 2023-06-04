@@ -16,13 +16,14 @@ public class RequestTypesChecker {
     }    
 
     public String correctFormat() {
-        String correctFormat = "";
+        String correctFormat = "[";
 
         for (String type : payloadTypes) {
             correctFormat += type + ", ";
         }
 
         correctFormat = correctFormat.substring(0, correctFormat.length() - 2);
+        correctFormat += "]";
 
         return correctFormat;
     }
@@ -38,7 +39,6 @@ public class RequestTypesChecker {
             return false;
         }
 
-        System.out.println("payload: " + payload.toString());
         for (int i = 0; i < payload.length; i++) {
             if (payload[i] == null) {
                 return false;
