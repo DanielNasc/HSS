@@ -1,5 +1,6 @@
 package UseCases.DonationsHistory;
 
+import Errors.NotFoundDataException;
 import Model.Entities.BloodDonator;
 import Model.Entities.DonationRegistry;
 import Model.Repositories.DonationHistoryRepository;
@@ -13,11 +14,11 @@ public class SecondScreeningUseCase {
         String rg,
         int[] clinicalScreeningInfluentialQuestions,
         boolean hypertensive
-    ) {
+    ) throws NotFoundDataException {
         BloodDonator donator = DonatorRepository.getByRG(rg);
 
         if (donator == null) {
-            throw new Error("Doador não existe.");
+            throw new NotFoundDataException("Donator", "Doador com RG: " + rg + " não encontrado");
         }
 
         ClinicalScreening clinicalScreening = new ClinicalScreening();

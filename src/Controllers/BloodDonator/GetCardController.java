@@ -14,12 +14,12 @@ public class GetCardController {
             return new Response(403, "Operação não permitida", null, null);
         }
 
-        Card card = GetCardUseCase.execute(rg);
 
-        if (card == null) {
-            return new Response(400, " Não é possível criar uma carteirinha para essa conta.", null, null);
+        try {
+            Card card = GetCardUseCase.execute(rg);
+            return new Response(200, "Carteirinha criada.", null, card);
+        } catch (Exception err) {
+            return new Response(404, err.getMessage(), null, null);
         }
-
-        return new Response(200, "Carteirinha criada.", null, card);
     }
 }

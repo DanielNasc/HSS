@@ -2,6 +2,7 @@ package Controllers.Schedules;
 
 import java.time.LocalDate;
 
+import Errors.NotFoundDataException;
 import Model.Entities.Schedule;
 import UseCases.Schedules.FindScheduleUseCase;
 import WebFake.Request;
@@ -41,8 +42,8 @@ public class FindScheduleUseCaseController {
             } else {
                 return new Response(404, "Agendamento não encontrado, você criou um agendamento/conta?", null, null);
             }
-        } catch (Exception err) {
-            return new Response(500, "Erro desconhecido", null, null);
+        } catch (NotFoundDataException err) {
+            return new Response(err.getStatus(), err.getMessage(), null, null);
         }
     }
 }

@@ -1,5 +1,6 @@
 package Controllers.Admins;
 
+import Errors.NotFoundDataException;
 import UseCases.Admins.LoginUseCase;
 import WebFake.Request;
 import WebFake.Response;
@@ -22,8 +23,8 @@ public class LoginController {
             } else {
                 return new Response(400, "Dados de login inválidos", null, null);
             }
-        } catch (Error err) {
-            return new Response(500, "Erro desconhecido", null, null);
+        } catch (NotFoundDataException err) {
+            return new Response(err.getStatus(), err.getMessage(), null, null);
         }
     }
 }

@@ -2,6 +2,7 @@ package Controllers.BloodDonator;
 
 import java.time.LocalDate;
 
+import Errors.InvalidRequestException;
 import UseCases.Donator.CreateDonatorUseCase;
 import WebFake.Request;
 import WebFake.Response;
@@ -32,9 +33,9 @@ public class CreateDonatorController {
         try {
             gender = Integer.parseInt(payload[5]);
             if (gender != 0 && gender != 1) 
-                throw new Exception("Invalid gender");
-        } catch (Exception err) {
-            return new Response(400, "Gênero inválido", null, dateOfBirth);
+                throw new InvalidRequestException("gender: 1 ou 0");
+        } catch (InvalidRequestException err) {
+            return new Response(400, err.getMessage(), null, dateOfBirth);
         }
 
         try {
